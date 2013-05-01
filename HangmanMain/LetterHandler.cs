@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public class LetterChecker
+    public class LetterHandler
     {
         private char[] guessedLetters;
         public char[] GuessedLetters

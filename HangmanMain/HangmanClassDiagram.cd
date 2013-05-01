@@ -14,11 +14,11 @@
       <FileName>RandomWordGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HangmanMain.LetterChecker">
+  <Class Name="HangmanMain.LetterHandler">
     <Position X="5.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAACAAAAA=</HashCode>
-      <FileName>LetterChecker.cs</FileName>
+      <FileName>LetterHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="HangmanMain.LetterStatus">

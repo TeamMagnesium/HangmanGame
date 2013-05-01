@@ -46,7 +46,7 @@
     <Compile Include="LetterStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomWordGenerator.cs" />
-    <Compile Include="LetterChecker.cs" />
+    <Compile Include="LetterHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

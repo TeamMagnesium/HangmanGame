@@ -16,7 +16,6 @@ namespace HangmanMain
 
         public RandomWordGenerator()
         {
-            // TODO: add more words to the array
             this.words = new string[] {
                 "computer", "programmer" , "software" , "debugger" , "compiler" , "developer" , "algorithm",
                 "array" , "method" , "variable"

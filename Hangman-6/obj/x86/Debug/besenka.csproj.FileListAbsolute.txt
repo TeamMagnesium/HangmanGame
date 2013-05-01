@@ -3,3 +3,5 @@ C:\Users\Didi\Dropbox\Programming\TELERIK\КПК\Hangman-6\bin\Debug\HangmanGame
 C:\Users\Didi\Dropbox\Programming\TELERIK\КПК\Hangman-6\obj\x86\Debug\besenka.csprojResolveAssemblyReference.cache
 C:\Users\Didi\Dropbox\Programming\TELERIK\КПК\Hangman-6\obj\x86\Debug\HangmanGame.exe
 C:\Users\Didi\Dropbox\Programming\TELERIK\КПК\Hangman-6\obj\x86\Debug\HangmanGame.pdb
+C:\Users\Didi\Desktop\HangmanGame\Hangman-6\obj\x86\Debug\HangmanGame.exe
+C:\Users\Didi\Desktop\HangmanGame\Hangman-6\obj\x86\Debug\HangmanGame.pdb
