@@ -44,9 +44,11 @@
     <Compile Include="ConsoleRenderer.cs" />
     <Compile Include="HangmanMain.cs" />
     <Compile Include="LetterStatus.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomWordGenerator.cs" />
     <Compile Include="LetterHandler.cs" />
+    <Compile Include="ScoreManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

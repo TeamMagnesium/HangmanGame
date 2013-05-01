@@ -21,6 +21,20 @@
       <FileName>LetterHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="HangmanMain.Player">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAIAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HangmanMain.ScoreManager">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAAEAAA=</HashCode>
+      <FileName>ScoreManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="HangmanMain.LetterStatus">
     <Position X="7.5" Y="1" Width="1.5" />
     <TypeIdentifier>
