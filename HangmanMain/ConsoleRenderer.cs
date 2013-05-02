@@ -7,5 +7,8 @@ namespace HangmanMain
 {
     public class ConsoleRenderer
     {
+        private void WriteWelcomeMessage()
+        {
+        }
     }
 }

@@ -1,2 +1,3 @@
 C:\Users\Didi\Dropbox\Programming\TELERIK\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe.config
 C:\Users\Didi\Desktop\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe.config
+D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe.config
