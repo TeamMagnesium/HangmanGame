@@ -18,7 +18,7 @@ namespace HangmanMain
             throw new NotImplementedException();
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
             // TODO: make class instances
 
@@ -26,16 +26,29 @@ namespace HangmanMain
 
             // TODO: make user word (char '-' repeating dash word length number of times)
 
+			while (true)
+			{
+				// TODO: render messages
 
-            // TODO: render messages
+				var userInput = Console.ReadLine();
+				var currentCommand = "";
+				try
+				{
+					currentCommand = CommandManager.ParseCommand(userInput);
+				}
+				catch (ArgumentException arEx)
+				{
+					Console.WriteLine(arEx.Message);
+					continue;
+				}
+				CommandManager.ExecuteCommand(currentCommand);
 
-            // TODO: get user input
+				// TODO: handle user input and catch exceptions
 
-            // TODO: handle user input and catch exceptions
+				// TODO: check letter
 
-            // TODO: check letter
-
-            // TODO: render messages
+				// TODO: render messages
+			}
         }
     }
 }
