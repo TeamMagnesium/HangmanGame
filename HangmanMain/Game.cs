@@ -7,12 +7,12 @@ namespace HangmanMain
 {
     public static class Game
     {
-        private static string dashWord;
+        //private static string dashWord;
         private static string userWord;
         private static string input;
      //   private bool isWordGuessed;
        // private int health = 5;
-        private char letter;
+        //private char letter;
         private static bool isGameOver;
 
         public static void StartGame()
@@ -31,7 +31,7 @@ namespace HangmanMain
                 }
                 catch (ArgumentException ex)
                 {
-                    ConsoleRenderer.PrintIncorrectInputMessage(ex.Message);
+                    ConsoleRenderer.PrintIncorrectInputMessage();
                 }
                 
 

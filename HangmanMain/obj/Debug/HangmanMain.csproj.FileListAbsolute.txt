@@ -7,3 +7,8 @@ C:\Users\Didi\Desktop\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe
 C:\Users\Didi\Desktop\HangmanGame\HangmanMain\bin\Debug\HangmanMain.pdb
 C:\Users\Didi\Desktop\HangmanGame\HangmanMain\obj\Debug\HangmanMain.exe
 C:\Users\Didi\Desktop\HangmanGame\HangmanMain\obj\Debug\HangmanMain.pdb
+D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe
+D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\bin\Debug\HangmanMain.pdb
+D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\obj\Debug\HangmanMain.csprojResolveAssemblyReference.cache
+D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\obj\Debug\HangmanMain.exe
+D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\obj\Debug\HangmanMain.pdb

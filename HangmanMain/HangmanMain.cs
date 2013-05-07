@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace HangmanMain
 {
+    using System.Collections.Generic;
+
     class HangmanMain
     {       
 
@@ -10,6 +12,7 @@ namespace HangmanMain
 
         static void Main()
         {
+            ConsoleRenderer.PrintWinningMessage(1);
             // TODO: make class instances
 
             // TODO: generate dash word
@@ -38,6 +41,8 @@ namespace HangmanMain
 				// TODO: check letter
 
 				// TODO: render messages
+
+                
 			}
         }
     }

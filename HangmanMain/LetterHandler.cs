@@ -32,7 +32,7 @@ namespace HangmanMain
 
             // TODO: change letterStatus
             
-            userWord = userWord;
+            //userWord = userWord;
             letterStatus = LetterStatus.Incorrect;
         }
     }
