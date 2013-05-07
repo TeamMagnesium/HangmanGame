@@ -9,6 +9,24 @@ namespace HangmanMain
     {
         private static List<Player> topPlayers = new List<Player>();
 
+        public static bool isPlayerTop(int mistakes)
+        {
+            if (topPlayers.Count < 5)
+            {
+                return true;
+            }
+
+            for (int i = 0; i < topPlayers.Count; i++)
+            {
+                if (topPlayers[i].Mistakes > mistakes)
+                {
+                    return true;
+                }
+            }
+
+            return false;            
+        }
+
         public static void AddPlayerToScoreBoard(Player player)
         {
             if (topPlayers.Count < 5)
@@ -39,7 +57,7 @@ namespace HangmanMain
 
         public static void PrintScoreboard()
         {
-            ConsoleRenderer.PrintScoreboard(ScoreManager.topPlayers);
+            ConsoleRenderer.PrintScoreboard(topPlayers);
         }
 
     }

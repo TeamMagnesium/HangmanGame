@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CommandManager.cs" />
     <Compile Include="ConsoleRenderer.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="HangmanMain.cs" />
     <Compile Include="LetterStatus.cs" />
     <Compile Include="Player.cs" />

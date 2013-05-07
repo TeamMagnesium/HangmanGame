@@ -3,7 +3,7 @@
   <Class Name="HangmanMain.ConsoleRenderer">
     <Position X="2.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAAAAAgBACAAAAAAAAAIQAAAAAAEQEIAAA=</HashCode>
       <FileName>ConsoleRenderer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="HangmanMain.LetterHandler">
     <Position X="5.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAIAAAACAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAIAAAACAAAAAAAiAAAAAAAACAAAAA=</HashCode>
       <FileName>LetterHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,8 +31,15 @@
   <Class Name="HangmanMain.ScoreManager">
     <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAQAAAAAAEAAA=</HashCode>
       <FileName>ScoreManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HangmanMain.Game">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAQgAA=</HashCode>
+      <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="HangmanMain.LetterStatus">

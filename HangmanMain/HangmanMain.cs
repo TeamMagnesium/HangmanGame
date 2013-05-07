@@ -4,19 +4,9 @@ using System.Linq;
 namespace HangmanMain
 {
     class HangmanMain
-    {
-        private string dashWord;
-        private string userWord;
-        private bool isWordGuessed;
-        private int health = 5;
-        private char letter;
+    {       
 
-        private char GetLetter(string input)
-        {
-            // TODO: validate input and throw exceptions
-
-            throw new NotImplementedException();
-        }
+   
 
         static void Main()
         {

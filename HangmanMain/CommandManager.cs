@@ -18,10 +18,10 @@ namespace HangmanMain
                     ScoreManager.PrintScoreboard();
 					break;
 				case "restart":
-					//TO DO: Game.Restart();
+					Game.RestartGame();
 					break;
 				case "exit":
-                    ConsoleRenderer.PrintExitMessage();
+                    Game.ExitGame();
 					break;
 				case "turn":
 					LetterHandler.HandleLetterGuess(guessedLetter);

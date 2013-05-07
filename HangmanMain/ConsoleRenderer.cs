@@ -39,7 +39,7 @@ namespace HangmanMain
         {
         }
 
-        public static void PrintIncorrectInputMessage()
+        public static void PrintIncorrectInputMessage(string message)
         {
         }
 
