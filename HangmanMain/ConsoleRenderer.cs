@@ -5,9 +5,45 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public class ConsoleRenderer
+    public static class ConsoleRenderer
     {
-        private void WriteWelcomeMessage()
+        public static void PrintWelcomeMessage()
+        {
+        }
+
+        public static void PrintUserWordMessage(string userWord)
+        {
+        }
+
+        public static void PrintCorrectLetterMessage(int revealedLetters)
+        {
+        }
+
+        public static void PrintIncorrectLetterMessage(char guessedLetter)
+        {
+        }
+
+        public static void PrintWinningMessage(int mistakes)
+        {
+        }
+
+        public static void PrintCheatingMessage(int mistakes)
+        {
+        }
+
+        public static void PrintGetNameForScoreboard()
+        {
+        }
+
+        public static void PrintScoreboard(List<Player> topPlayers)
+        {
+        }
+
+        public static void PrintIncorrectInputMessage()
+        {
+        }
+
+        public static void PrintExitMessage()
         {
         }
     }

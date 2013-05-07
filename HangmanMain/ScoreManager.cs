@@ -37,5 +37,10 @@ namespace HangmanMain
             topPlayers.Sort((Player firstPlayer, Player secondPlayer) => secondPlayer.Name.CompareTo(firstPlayer.Name));
         }
 
+        public static void PrintScoreboard()
+        {
+            ConsoleRenderer.PrintScoreboard(ScoreManager.topPlayers);
+        }
+
     }
 }

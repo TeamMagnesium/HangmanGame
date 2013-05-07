@@ -5,16 +5,24 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public class LetterHandler
+    public static class LetterHandler
     {
-        private char[] guessedLetters;
-        public char[] GuessedLetters
+        private static char[] guessedLetters;
+        public static char[] GuessedLetters
         {
             get { return guessedLetters; }
             set { guessedLetters = value; }
         }
 
-        private void CheckLetter(char letter, string dashWord, ref string userWord, out LetterStatus letterStatus)
+        public static void RevealLetter()
+        {
+        }
+
+        public static void HandleLetterGuess(char guessedLetter)
+        {
+        }
+
+        private static void CheckLetter(char letter, string dashWord, ref string userWord, out LetterStatus letterStatus)
         {
             // TODO: check if letter is repeating (is in guessedLetters)
 

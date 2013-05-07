@@ -2,3 +2,8 @@ C:\Users\Didi\Dropbox\Programming\TELERIK\HangmanGame\HangmanMain\bin\Debug\Hang
 C:\Users\Didi\Desktop\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe.config
 D:\Telerik\TeamProjectKPK\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe.config
 C:\Users\zzareva\Documents\Visual Studio 2012\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe.config
+C:\Users\Didi\Desktop\HangmanGame\HangmanMain\obj\Debug\HangmanMain.csprojResolveAssemblyReference.cache
+C:\Users\Didi\Desktop\HangmanGame\HangmanMain\bin\Debug\HangmanMain.exe
+C:\Users\Didi\Desktop\HangmanGame\HangmanMain\bin\Debug\HangmanMain.pdb
+C:\Users\Didi\Desktop\HangmanGame\HangmanMain\obj\Debug\HangmanMain.exe
+C:\Users\Didi\Desktop\HangmanGame\HangmanMain\obj\Debug\HangmanMain.pdb
