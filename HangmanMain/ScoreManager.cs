@@ -54,11 +54,5 @@ namespace HangmanMain
             topPlayers.Sort((Player firstPlayer, Player secondPlayer) => firstPlayer.Mistakes.CompareTo(secondPlayer.Mistakes));
             topPlayers.Sort((Player firstPlayer, Player secondPlayer) => secondPlayer.Name.CompareTo(firstPlayer.Name));
         }
-
-        public void PrintScoreboard()
-        {
-            ConsoleRenderer.PrintScoreboard(topPlayers);
-        }
-
     }
 }

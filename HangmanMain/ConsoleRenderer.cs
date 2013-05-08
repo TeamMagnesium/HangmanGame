@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public static class ConsoleRenderer
+    public class ConsoleRenderer
     {
         public const int MaxNumberOfTopPlayers = 5;
 
-        public static void PrintWelcomeMessage()
+        public void PrintWelcomeMessage()
         {
             StringBuilder printMessage = new StringBuilder();
             printMessage.Append("Welcome to \"Hangman\" game. Please try to guess my secret word\r\n");
@@ -17,7 +17,7 @@ namespace HangmanMain
             Console.WriteLine(printMessage.ToString());
         }
 
-        public static void PrintUserWordMessage(string userWord)
+        public void PrintUserWordMessage(string userWord)
         {
             StringBuilder printMessage = new StringBuilder();
             printMessage.AppendFormat("The secret word is {0}\r\n", userWord);
@@ -26,7 +26,7 @@ namespace HangmanMain
             Console.Write(printMessage.ToString());
         }
 
-        public static void PrintCorrectLetterMessage(int revealedLetters)
+        public void PrintCorrectLetterMessage(int revealedLetters)
         {
             string printMessage;
             if (revealedLetters == 1)
@@ -41,20 +41,20 @@ namespace HangmanMain
             Console.WriteLine(printMessage);
         }
 
-        public static void PrintRevealMessage(char revealedLetter)
+        public void PrintRevealMessage(char revealedLetter)
         {
             string printMessage = string.Format("OK, I reveal for you the next letter '{0}'.", revealedLetter);
             Console.WriteLine(printMessage);
         }
 
-        public static void PrintIncorrectLetterMessage(char guessedLetter)
+        public void PrintIncorrectLetterMessage(char guessedLetter)
         {
             string printMessage = string.Format("Sorry! There are no unrevealed letters \"{0}\".", guessedLetter);
 
             Console.WriteLine(printMessage);
         }
 
-        public static void PrintWinningMessage(int mistakes)
+        public void PrintWinningMessage(int mistakes)
         {
             string printMessage;
             if (mistakes == 1)
@@ -69,7 +69,7 @@ namespace HangmanMain
             Console.WriteLine(printMessage);
         }
 
-        public static void PrintCheatingMessage(int mistakes)
+        public void PrintCheatingMessage(int mistakes)
         {
             string printMessage;
             if (mistakes == 1)
@@ -84,14 +84,14 @@ namespace HangmanMain
             Console.WriteLine(printMessage);
         }
 
-        public static void PrintGetNameForScoreboard()
+        public void PrintGetNameForScoreboard()
         {
             string printMessage = string.Format("Please enter your name for the top scoreboard:");
 
             Console.Write(printMessage);
         }
 
-        public static void PrintScoreboard(List<Player> topPlayers)
+        public void PrintScoreboard(List<Player> topPlayers)
         {
             StringBuilder printMessage = new StringBuilder();
 			if (topPlayers.Count == 0)
@@ -124,13 +124,13 @@ namespace HangmanMain
 			Console.WriteLine(printMessage);
         }
 
-        public static void PrintIncorrectInputMessage()
+        public void PrintIncorrectInputMessage()
         {
             string printMessage = "Incorrect guess or command!\r\nEnter your guess or command:";
             Console.Write(printMessage);
         }
 
-        public static void PrintExitMessage()
+        public void PrintExitMessage()
         {
             string printMessage = "Good bye!";
             Console.WriteLine(printMessage);

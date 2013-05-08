@@ -11,12 +11,24 @@ namespace HangmanMain
 		private string userWord;
 		private string userInput;
 		private bool isWordGuessed;
-		private int health = 5;
 		private char letter;
 		private bool isGameOver;
 
 		private LetterHandler letterHandler;
 		private ScoreManager scoreManager;
+        private RandomWordGenerator generator;
+        private ConsoleRenderer renderer;
+
+        private void InitializeGameSettings()
+        {
+            this.isGameOver = false;
+            this.isWordGuessed = false;
+
+            this.generator = new RandomWordGenerator();
+            this.userWord = generator.AssignRandomWord();
+            this.letterHandler = new LetterHandler();
+            this.renderer = new ConsoleRenderer();
+        }
 
 		public Game(ScoreManager scoreManager)
 		{
@@ -26,10 +38,10 @@ namespace HangmanMain
 
 		public void StartGame()
 		{
-			ConsoleRenderer.PrintWelcomeMessage();
+			renderer.PrintWelcomeMessage();
 			while (!isGameOver)
 			{
-				ConsoleRenderer.PrintUserWordMessage(userWord);
+				renderer.PrintUserWordMessage(userWord);
 				userInput = Console.ReadLine();
 
 				try
@@ -40,7 +52,7 @@ namespace HangmanMain
 				}
 				catch (ArgumentException ex)
 				{
-					ConsoleRenderer.PrintIncorrectInputMessage();
+					renderer.PrintIncorrectInputMessage();
 				}
 			}
 		}
@@ -58,20 +70,10 @@ namespace HangmanMain
 
 		public void ExitGame()
 		{
-			ConsoleRenderer.PrintExitMessage();
+			renderer.PrintExitMessage();
 			EndGame();
 		}
-
-		private void InitializeGameSettings()
-		{
-			this.isGameOver = false;
-			this.isWordGuessed = false;
-			this.health = 5;
-			var generator = new RandomWordGenerator();
-			this.userWord = generator.AssignRandomWord();
-			this.letterHandler = new LetterHandler();
-		}
-
+        
 		private void ExecuteCommand(string command)
 		{
 			switch (command)
