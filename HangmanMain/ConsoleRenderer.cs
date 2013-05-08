@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HangmanMain
+﻿namespace HangmanMain
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public static class ConsoleRenderer
     {
         public const int MaxNumberOfTopPlayers = 5;
@@ -94,34 +94,40 @@ namespace HangmanMain
         public static void PrintScoreboard(List<Player> topPlayers)
         {
             StringBuilder printMessage = new StringBuilder();
-			if (topPlayers.Count == 0)
-			{
-				printMessage.Append("There are no records in the scoreboard.");
-			}
-			else
-			{
-				printMessage.Append("Scoreboard:\r\n");
-				for (int i = 0; i < MaxNumberOfTopPlayers; i++)
-				{
-					if (topPlayers[i].Mistakes == 1)
-					{
-						printMessage.AppendFormat(
-							"{0}. {1} --> {2} mistake\r\n",
-							i,
-							topPlayers[i].Name,
-							topPlayers[i].Mistakes);
-					}
-					else
-					{
-						printMessage.AppendFormat(
-							"{0}. {1} --> {2} mistakes\r\n",
-							i,
-							topPlayers[i].Name,
-							topPlayers[i].Mistakes);
-					}
-				}
-			}
-			Console.WriteLine(printMessage);
+            int listCount = 0;
+
+            if (topPlayers.Count > MaxNumberOfTopPlayers)
+            {
+                listCount = MaxNumberOfTopPlayers;
+            }
+            else
+            {
+                listCount = topPlayers.Count;
+            }
+
+            if (listCount == 0)
+            {
+                printMessage.Append("There are no records in the scoreboard.");
+            }
+            else
+            {
+                printMessage.Append("Scoreboard:\r\n");
+                for (int i = 0; i < listCount; i++)
+                {
+                    if (topPlayers[i].Mistakes == 1)
+                    {
+                        printMessage.AppendFormat(
+                            "{0}. {1} --> {2} mistake\r\n", i + 1, topPlayers[i].Name, topPlayers[i].Mistakes);
+                    }
+                    else
+                    {
+                        printMessage.AppendFormat(
+                            "{0}. {1} --> {2} mistakes\r\n", i + 1, topPlayers[i].Name, topPlayers[i].Mistakes);
+                    }
+                }
+            }
+
+            Console.Write(printMessage);
         }
 
         public static void PrintIncorrectInputMessage()
