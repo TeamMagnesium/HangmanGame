@@ -7,7 +7,13 @@ namespace HangmanMain
 {
     public class ScoreManager
     {
-        private static List<Player> topPlayers = new List<Player>();
+        private List<Player> topPlayers = new List<Player>();
+        public List<Player> TopPlayers
+        {
+            get { return topPlayers; }
+            private set { topPlayers = value; }
+        }
+        
 
         public bool isPlayerTop(int mistakes)
         {

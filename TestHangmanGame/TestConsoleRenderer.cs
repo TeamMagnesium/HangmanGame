@@ -11,13 +11,15 @@
     [TestClass]
     public class TestConsoleRenderer
     {
+        private ConsoleRenderer renderer = new ConsoleRenderer();
+        
         [TestMethod]
         public void ValidateConsoleExitMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintExitMessage();
+                renderer.PrintExitMessage();
 
                 string expected = string.Format("Good bye!{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -30,7 +32,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintWelcomeMessage();
+                renderer.PrintWelcomeMessage();
 
                 string expected =
                     string.Format(
@@ -47,7 +49,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintUserWordMessage("arr_ _");
+                renderer.PrintUserWordMessage("arr_ _");
 
                 string expected = string.Format(
                     "The secret word is arr_ _{0}Enter your guess or command: ", Environment.NewLine);
@@ -61,7 +63,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintCorrectLetterMessage(1);
+                renderer.PrintCorrectLetterMessage(1);
 
                 string expected = string.Format("Good job! You revealed 1 letter.{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -74,7 +76,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintCorrectLetterMessage(5);
+                renderer.PrintCorrectLetterMessage(5);
 
                 string expected = string.Format("Good job! You revealed 5 letters.{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -87,7 +89,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintRevealMessage('a');
+                renderer.PrintRevealMessage('a');
 
                 string expected = string.Format("OK, I reveal for you the next letter 'a'.{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -100,7 +102,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintIncorrectLetterMessage('a');
+                renderer.PrintIncorrectLetterMessage('a');
 
                 string expected = string.Format("Sorry! There are no unrevealed letters \"a\".{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -113,7 +115,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintWinningMessage(1);
+                renderer.PrintWinningMessage(1);
 
                 string expected = string.Format("You won with 1 mistake.{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -126,7 +128,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintWinningMessage(2);
+                renderer.PrintWinningMessage(2);
 
                 string expected = string.Format("You won with 2 mistakes.{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -139,7 +141,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintCheatingMessage(1);
+                renderer.PrintCheatingMessage(1);
 
                 string expected =
                     string.Format(
@@ -156,7 +158,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintCheatingMessage(5);
+                renderer.PrintCheatingMessage(5);
 
                 string expected =
                     string.Format(
@@ -173,7 +175,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintGetNameForScoreboard();
+                renderer.PrintGetNameForScoreboard();
                 string expected = "Please enter your name for the top scoreboard:";
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
@@ -185,7 +187,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintIncorrectInputMessage();
+                renderer.PrintIncorrectInputMessage();
                 string expected = string.Format(
                     "Incorrect guess or command!{0}Enter your guess or command:", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -206,7 +208,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintScoreboard(scoreboard);
+                renderer.PrintScoreboard(scoreboard);
                 string expected =
                     string.Format(
                         "Scoreboard:{0}1. Ivan --> 0 mistakes{0}" + "2. petur --> 1 mistake{0}"
@@ -224,7 +226,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintScoreboard(scoreboard);
+                renderer.PrintScoreboard(scoreboard);
                 string expected = "There are no records in the scoreboard.";
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
@@ -238,7 +240,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                ConsoleRenderer.PrintScoreboard(scoreboard);
+                renderer.PrintScoreboard(scoreboard);
                 string expected = string.Format("Scoreboard:{0}1. Ivan --> 0 mistakes{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
             }

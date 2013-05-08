@@ -7,8 +7,8 @@ namespace HangmanMain
 {
     public class LetterHandler
     {
-        private static char[] guessedLetters;
-        public static char[] GuessedLetters
+        private char[] guessedLetters;
+        public char[] GuessedLetters
         {
             get { return guessedLetters; }
             set { guessedLetters = value; }

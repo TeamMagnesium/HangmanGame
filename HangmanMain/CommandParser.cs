@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace HangmanMain
 {
-	public static class CommandParser
+	public class CommandParser
 	{
-		private static char guessedLetter;
+		private char guessedLetter;
 
-		public static string ParseCommand(string commandString)
+		public string ParseCommand(string commandString)
 		{
 			string command;
 

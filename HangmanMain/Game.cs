@@ -11,23 +11,38 @@ namespace HangmanMain
 		private string userWord;
 		private string userInput;
 		private bool isWordGuessed;
-		private char letter;
 		private bool isGameOver;
 
 		private LetterHandler letterHandler;
 		private ScoreManager scoreManager;
         private RandomWordGenerator generator;
         private ConsoleRenderer renderer;
+        private CommandParser parser;
 
         private void InitializeGameSettings()
         {
             this.isGameOver = false;
             this.isWordGuessed = false;
-
-            this.generator = new RandomWordGenerator();
-            this.userWord = generator.AssignRandomWord();
+            
+            this.generator = new RandomWordGenerator();            
             this.letterHandler = new LetterHandler();
             this.renderer = new ConsoleRenderer();
+            this.parser = new CommandParser();
+
+            this.dashWord = generator.AssignRandomWord();
+            this.userWord = BlankWord(dashWord.Length);
+        }
+
+        private string BlankWord(int length)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < length; i++)
+            {
+                stringBuilder.Append('_');
+            }
+
+            return stringBuilder.ToString();
         }
 
 		public Game(ScoreManager scoreManager)
@@ -46,11 +61,10 @@ namespace HangmanMain
 
 				try
 				{
-					var currentCommand = CommandParser.ParseCommand(userInput);
-
-					ExecuteCommand(currentCommand);
+					string command = parser.ParseCommand(userInput);
+					ExecuteCommand(command);
 				}
-				catch (ArgumentException ex)
+				catch (ArgumentException)
 				{
 					renderer.PrintIncorrectInputMessage();
 				}
@@ -82,7 +96,7 @@ namespace HangmanMain
 					this.letterHandler.RevealLetter();
 					break;
 				case "top":
-					this.scoreManager.PrintScoreboard();
+					this.renderer.PrintScoreboard(scoreManager.TopPlayers);
 					break;
 				case "restart":
 					RestartGame();
