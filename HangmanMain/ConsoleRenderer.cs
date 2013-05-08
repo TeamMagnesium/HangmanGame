@@ -94,26 +94,34 @@ namespace HangmanMain
         public static void PrintScoreboard(List<Player> topPlayers)
         {
             StringBuilder printMessage = new StringBuilder();
-            printMessage.Append("Scoreboard:\r\n");
-            for (int i = 0; i < MaxNumberOfTopPlayers; i++)
-            {
-                if (topPlayers[i].Mistakes == 1)
-                {
-                    printMessage.AppendFormat(
-                        "{0}. {1} --> {2} mistake\r\n",
-                        i,
-                        topPlayers[i].Name,
-                        topPlayers[i].Mistakes);
-                }
-                else
-                {
-                    printMessage.AppendFormat(
-                        "{0}. {1} --> {2} mistakes\r\n",
-                        i,
-                        topPlayers[i].Name, 
-                        topPlayers[i].Mistakes);
-                }
-            }
+			if (topPlayers.Count == 0)
+			{
+				printMessage.Append("There are no records in the scoreboard.");
+			}
+			else
+			{
+				printMessage.Append("Scoreboard:\r\n");
+				for (int i = 0; i < MaxNumberOfTopPlayers; i++)
+				{
+					if (topPlayers[i].Mistakes == 1)
+					{
+						printMessage.AppendFormat(
+							"{0}. {1} --> {2} mistake\r\n",
+							i,
+							topPlayers[i].Name,
+							topPlayers[i].Mistakes);
+					}
+					else
+					{
+						printMessage.AppendFormat(
+							"{0}. {1} --> {2} mistakes\r\n",
+							i,
+							topPlayers[i].Name,
+							topPlayers[i].Mistakes);
+					}
+				}
+			}
+			Console.WriteLine(printMessage);
         }
 
         public static void PrintIncorrectInputMessage()
