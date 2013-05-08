@@ -243,5 +243,30 @@
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
+
+        [TestMethod]
+        public void ValidateConsolePrintScoreboardOf6Players()
+        {
+            List<Player> scoreboard = new List<Player>();
+
+            scoreboard.Add(new Player("Ivan", 0));
+            scoreboard.Add(new Player("petur", 1));
+            scoreboard.Add(new Player("Bay Ivan", 2));
+            scoreboard.Add(new Player("Misho", 3));
+            scoreboard.Add(new Player("Milan", 5));
+            scoreboard.Add(new Player("Milcho", 6));
+
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                ConsoleRenderer.PrintScoreboard(scoreboard);
+                string expected =
+                    string.Format(
+                        "Scoreboard:{0}1. Ivan --> 0 mistakes{0}" + "2. petur --> 1 mistake{0}"
+                        + "3. Bay Ivan --> 2 mistakes{0}" + "4. Misho --> 3 mistakes{0}5. Milan --> 5 mistakes{0}",
+                        Environment.NewLine);
+                Assert.AreEqual(expected, stringWriter.ToString());
+            }
+        }
     }
 }
