@@ -9,7 +9,7 @@ namespace HangmanMain
     {
         private static List<Player> topPlayers = new List<Player>();
 
-        public static bool isPlayerTop(int mistakes)
+        public bool isPlayerTop(int mistakes)
         {
             if (topPlayers.Count < 5)
             {
@@ -27,7 +27,7 @@ namespace HangmanMain
             return false;            
         }
 
-        public static void AddPlayerToScoreBoard(Player player)
+        public void AddPlayerToScoreBoard(Player player)
         {
             if (topPlayers.Count < 5)
             {
@@ -48,14 +48,14 @@ namespace HangmanMain
             SortPlayers();
         }
 
-        private static void SortPlayers()
+        private void SortPlayers()
         {
             // not sure if sorting works right
             topPlayers.Sort((Player firstPlayer, Player secondPlayer) => firstPlayer.Mistakes.CompareTo(secondPlayer.Mistakes));
             topPlayers.Sort((Player firstPlayer, Player secondPlayer) => secondPlayer.Name.CompareTo(firstPlayer.Name));
         }
 
-        public static void PrintScoreboard()
+        public void PrintScoreboard()
         {
             ConsoleRenderer.PrintScoreboard(topPlayers);
         }

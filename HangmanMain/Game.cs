@@ -5,63 +5,93 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public static class Game
-    {
-        //private static string dashWord;
-        private static string userWord;
-        private static string input;
-     //   private bool isWordGuessed;
-       // private int health = 5;
-        //private char letter;
-        private static bool isGameOver;
+	public class Game
+	{
+		private string dashWord;
+		private string userWord;
+		private string userInput;
+		private bool isWordGuessed;
+		private int health = 5;
+		private char letter;
+		private bool isGameOver;
 
-        public static void StartGame()
-        {
-            ConsoleRenderer.PrintWelcomeMessage();
-            while (isGameOver == false)
-            {
-                ConsoleRenderer.PrintUserWordMessage(userWord);
-                input = Console.ReadLine();
+		private LetterHandler letterHandler;
+		private ScoreManager scoreManager;
 
-                try
-                {
-                    // TODO: parse command
+		public Game(ScoreManager scoreManager)
+		{
+			InitializeGameSettings();
+			this.scoreManager = scoreManager;
+		}
 
-                    // TODO: execute command
-                }
-                catch (ArgumentException ex)
-                {
-                    ConsoleRenderer.PrintIncorrectInputMessage();
-                }
-                
+		public void StartGame()
+		{
+			ConsoleRenderer.PrintWelcomeMessage();
+			while (!isGameOver)
+			{
+				ConsoleRenderer.PrintUserWordMessage(userWord);
+				userInput = Console.ReadLine();
 
-                // TODO: 
-                // TODO: 
-                // TODO: 
-                // TODO: 
-                // TODO: 
-                // TODO: 
-                // TODO: 
-                
-            }
-        }
+				try
+				{
+					var currentCommand = CommandParser.ParseCommand(userInput);
 
-        public static void RestartGame()
-        {
-            // TODO: give default values to variables
+					ExecuteCommand(currentCommand);
+				}
+				catch (ArgumentException ex)
+				{
+					ConsoleRenderer.PrintIncorrectInputMessage();
+				}
+			}
+		}
 
-            Game.StartGame();
-        }
+		public void RestartGame()
+		{
+			InitializeGameSettings();
+			StartGame();
+		}
 
-        public static void EndGame()
-        {
-            isGameOver = true;
-        }
+		public void EndGame()
+		{
+			isGameOver = true;
+		}
 
-        public static void ExitGame()
-        {
-            ConsoleRenderer.PrintExitMessage();
-            EndGame();
-        }
-    }
+		public void ExitGame()
+		{
+			ConsoleRenderer.PrintExitMessage();
+			EndGame();
+		}
+
+		private void InitializeGameSettings()
+		{
+			this.isGameOver = false;
+			this.isWordGuessed = false;
+			this.health = 5;
+			var generator = new RandomWordGenerator();
+			this.userWord = generator.AssignRandomWord();
+			this.letterHandler = new LetterHandler();
+		}
+
+		private void ExecuteCommand(string command)
+		{
+			switch (command)
+			{
+				case "help":
+					this.letterHandler.RevealLetter();
+					break;
+				case "top":
+					this.scoreManager.PrintScoreboard();
+					break;
+				case "restart":
+					RestartGame();
+					break;
+				case "exit":
+					ExitGame();
+					break;
+				default:
+					this.letterHandler.HandleLetterGuess(command[0]);
+					break;
+			}
+		}
+	}
 }

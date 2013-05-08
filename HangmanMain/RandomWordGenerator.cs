@@ -22,7 +22,7 @@ namespace HangmanMain
             };
         }
 
-        public string RandomizeAWord()
+        public string AssignRandomWord()
         {
             Random randomizer = new Random();
             int wordIndex = randomizer.Next(0, this.words.Length);

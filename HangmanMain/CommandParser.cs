@@ -3,33 +3,10 @@ using System.Linq;
 
 namespace HangmanMain
 {
-	public static class CommandManager
+	public static class CommandParser
 	{
 		private static char guessedLetter;
 
-		public static void ExecuteCommand(string command)
-		{
-			switch (command)
-			{
-				case "help":
-                    LetterHandler.RevealLetter();
-					break;
-				case "top":
-                    ScoreManager.PrintScoreboard();
-					break;
-				case "restart":
-					Game.RestartGame();
-					break;
-				case "exit":
-                    Game.ExitGame();
-					break;
-				case "turn":
-					LetterHandler.HandleLetterGuess(guessedLetter);
-					break;
-				default:
-					break;
-			}
-		}
 		public static string ParseCommand(string commandString)
 		{
 			string command;
@@ -41,7 +18,7 @@ namespace HangmanMain
 			else if (commandString.Length == 1 && Char.IsLetter(commandString[0]))
 			{
 				guessedLetter = commandString[0];
-				command = "turn";
+				command = guessedLetter.ToString();
 			}
 			else
 			{
