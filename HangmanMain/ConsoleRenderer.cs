@@ -19,11 +19,12 @@
 
         public void PrintUserWordMessage(string userWord)
         {
-            StringBuilder printMessage = new StringBuilder();
-            printMessage.AppendFormat("The secret word is {0}\r\n", userWord);
-            printMessage.Append("Enter your guess or command: ");
+            Console.WriteLine("The secret word is {0}", userWord);
+        }
 
-            Console.Write(printMessage.ToString());
+        public void PrintEnterGuessOrCommandMessage()
+        {
+            Console.Write("Enter your guess or command: ");
         }
 
         public void PrintCorrectLetterMessage(int revealedLetters)
@@ -107,7 +108,7 @@
 
             if (listCount == 0)
             {
-                printMessage.Append("There are no records in the scoreboard.");
+                printMessage.AppendLine("There are no records in the scoreboard.");
             }
             else
             {
@@ -132,8 +133,8 @@
 
         public void PrintIncorrectInputMessage()
         {
-            string printMessage = "Incorrect guess or command!\r\nEnter your guess or command:";
-            Console.Write(printMessage);
+            string printMessage = "Incorrect guess or command!";
+            Console.WriteLine(printMessage);
         }
 
         public void PrintExitMessage()

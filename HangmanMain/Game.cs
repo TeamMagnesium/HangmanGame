@@ -36,13 +36,17 @@ namespace HangmanMain
         private string BlankWord(int length)
         {
             StringBuilder stringBuilder = new StringBuilder();
+            string blankWord;
 
             for (int i = 0; i < length; i++)
             {
-                stringBuilder.Append('_');
+                stringBuilder.Append("_ ");
             }
 
-            return stringBuilder.ToString();
+            blankWord = stringBuilder.ToString();
+            string trimmedBlankWord = blankWord.TrimEnd();
+
+            return trimmedBlankWord;
         }
 
 		public Game(ScoreManager scoreManager)
@@ -54,20 +58,21 @@ namespace HangmanMain
 		public void StartGame()
 		{
 			renderer.PrintWelcomeMessage();
+            renderer.PrintUserWordMessage(userWord);
+
 			while (!isGameOver)
 			{
-				renderer.PrintUserWordMessage(userWord);
-				userInput = Console.ReadLine();
-
-				try
-				{
-					string command = parser.ParseCommand(userInput);
-					ExecuteCommand(command);
-				}
-				catch (ArgumentException)
-				{
-					renderer.PrintIncorrectInputMessage();
-				}
+                try
+                {
+                    renderer.PrintEnterGuessOrCommandMessage();
+                    userInput = Console.ReadLine();
+                    string command = parser.ParseCommand(userInput);
+                    ExecuteCommand(command);
+                }
+                catch (ArgumentException)
+                {
+                    renderer.PrintIncorrectInputMessage();
+                }			
 			}
 		}
 
@@ -94,6 +99,7 @@ namespace HangmanMain
 			{
 				case "help":
 					this.letterHandler.RevealLetter();
+                    renderer.PrintUserWordMessage(userWord);
 					break;
 				case "top":
 					this.renderer.PrintScoreboard(scoreManager.TopPlayers);
@@ -106,6 +112,7 @@ namespace HangmanMain
 					break;
 				default:
 					this.letterHandler.HandleLetterGuess(command[0]);
+                    renderer.PrintUserWordMessage(userWord);
 					break;
 			}
 		}
