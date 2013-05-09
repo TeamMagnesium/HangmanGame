@@ -97,9 +97,7 @@ namespace HangmanMain
 				case "help":
                     char revealedLetter = letterHandler.GetRevealedLetter(wordToDisplay);
                     renderer.PrintRevealMessage(revealedLetter);
-
 					letterHandler.RevealLetter(ref wordToDisplay);
-
                     renderer.PrintUserWordMessage(wordToDisplay);
 					break;
 				case "top":

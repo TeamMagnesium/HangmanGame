@@ -49,7 +49,6 @@ namespace HangmanMain
 				{
 					wordToDisplay = FillLetter(guessedLetter, wordToDisplay);
 					letterStatus = LetterStatus.Correct;
-
 				}
 				else
 				{

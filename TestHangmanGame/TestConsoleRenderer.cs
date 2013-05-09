@@ -49,10 +49,10 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                renderer.PrintUserWordMessage("arr_ _");
+                renderer.PrintUserWordMessage("arr__");
 
                 string expected = string.Format(
-                    "The secret word is a r r _ _{0}Enter your guess or command: ", Environment.NewLine);
+                    "The secret word is a r r _ _{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
@@ -189,7 +189,7 @@
                 Console.SetOut(stringWriter);
                 renderer.PrintIncorrectInputMessage();
                 string expected = string.Format(
-                    "Incorrect guess or command!{0}Enter your guess or command:{0}", Environment.NewLine);
+                    "Incorrect guess or command!{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
