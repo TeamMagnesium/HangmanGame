@@ -195,6 +195,19 @@
         }
 
         [TestMethod]
+        public void ValidateConsolePrintRepeatingLetterMessage()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                renderer.PrintRepeatingLetterMessage('t');
+                string expected = string.Format(
+                    "You have already guessed the letter \"t\".{0}", Environment.NewLine);
+                Assert.AreEqual(expected, stringWriter.ToString());
+            }
+        }
+
+        [TestMethod]
         public void ValidateConsolePrintScoreboardOf5Players()
         {
             List<Player> scoreboard = new List<Player>();
