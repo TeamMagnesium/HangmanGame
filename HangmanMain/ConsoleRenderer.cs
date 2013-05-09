@@ -57,7 +57,8 @@
 
         public void PrintRepeatingLetterMessage(char guessedLetter)
         {
-            // TODO: print appropriate message, i.e You already guessed the letter "a"!
+            string printMessage = string.Format("You have already guessed the letter \"{0}\".", guessedLetter);
+            Console.WriteLine(printMessage);
         }
 
         public void PrintWinningMessage(int mistakes)
