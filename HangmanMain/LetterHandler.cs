@@ -7,9 +7,17 @@ namespace HangmanMain
 {
     public class LetterHandler
     {
-        private List<char> guessedLetters = new List<char>();
+		private List<char> guessedLetters = new List<char>();
+		private List<char> triedLetters = new List<char>();
 
-        public char GetRevealedLetter(string dashWord, string userWord)
+		private readonly string wordToGuess;
+
+		public LetterHandler(string word)
+		{
+			this.wordToGuess = word;
+		}
+
+        public char GetRevealedLetter(string wordToDisplay)
         {
             char revealedLetter = 'a'; // has to be changed
 
@@ -18,13 +26,13 @@ namespace HangmanMain
             return revealedLetter;
         }
 
-        public void RevealLetter(string dashWord, ref string userWord)
+		public void RevealLetter(ref string wordToDisplay)
         {
-            char revealedLetter = GetRevealedLetter(dashWord, userWord);
-            FillLetter(revealedLetter, dashWord, userWord);
+			char revealedLetter = GetRevealedLetter(wordToDisplay);
+			FillLetter(revealedLetter, wordToDisplay);
         }
 
-        public void HandleLetterGuess(char guessedLetter, string dashWord, ref string userWord, out LetterStatus letterStatus)
+		public void HandleLetterGuess(char guessedLetter, ref string wordToDisplay, out LetterStatus letterStatus)
         {
             // TODO: check if letter is repeating (is in guessedLetters)
 
@@ -43,18 +51,18 @@ namespace HangmanMain
             return false;
         }
 
-        private bool IsLetterCorrect(char letter, string dashWord)
+        private bool IsLetterCorrect(char letter)
         {
 
 
             return false;
         }
 
-        private string FillLetter(char letter, string dashWord, string userWord)
+		private string FillLetter(char letter, string wordToDisplay)
         {
 
 
-            return userWord;
+			return wordToDisplay;
         }
 
     }

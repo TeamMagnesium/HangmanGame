@@ -7,7 +7,7 @@ namespace HangmanMain
 {
     public class ScoreManager
     {
-        private const int MAX_NUMBER_OF_PLAYERS = 5;
+        private const int MaxNumberOFPlayers = 5;
 
         private List<Player> topPlayers = new List<Player>();
         public List<Player> TopPlayers
@@ -17,9 +17,9 @@ namespace HangmanMain
         }
         
 
-        public bool isPlayerTop(int mistakes)
+        public bool IsPlayerTop(int mistakes)
         {
-            if (topPlayers.Count < MAX_NUMBER_OF_PLAYERS)
+            if (topPlayers.Count < MaxNumberOFPlayers)
             {
                 return true;
             }
@@ -32,12 +32,12 @@ namespace HangmanMain
                 }
             }
 
-            return false;            
+            return false;
         }
 
         public void AddPlayerToScoreBoard(Player player)
         {
-            if (topPlayers.Count < MAX_NUMBER_OF_PLAYERS)
+            if (topPlayers.Count < MaxNumberOFPlayers)
             {
                 topPlayers.Add(player);
             }

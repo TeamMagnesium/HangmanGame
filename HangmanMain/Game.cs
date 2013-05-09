@@ -7,30 +7,28 @@ namespace HangmanMain
 {
 	public class Game
 	{
-		private string dashWord;
-		private string userWord;
+		private string wordToGuess;
+		private string wordToDisplay;
 		private string userInput;
 		private bool isGameOver;
         private char guessedLetter;
         private LetterStatus letterStatus;
 
 		private LetterHandler letterHandler;
-		private ScoreManager scoreManager;
-        private RandomWordGenerator generator;
+		private readonly ScoreManager scoreManager;
+		private RandomWordGenerator generator;
         private ConsoleRenderer renderer;
         private CommandParser parser;
 
         private void InitializeGameSettings()
         {
-            this.isGameOver = false;
-            
-            this.generator = new RandomWordGenerator();            
-            this.letterHandler = new LetterHandler();
+			this.isGameOver = false;
+            this.generator = new RandomWordGenerator();
+			this.wordToGuess = generator.AssignRandomWord();
+			this.wordToDisplay = BlankWord(wordToGuess.Length);
+			this.letterHandler = new LetterHandler(wordToGuess);
             this.renderer = new ConsoleRenderer();
             this.parser = new CommandParser();
-
-            this.dashWord = generator.AssignRandomWord();
-            this.userWord = BlankWord(dashWord.Length);
         }
 
         private string BlankWord(int length)
@@ -58,7 +56,7 @@ namespace HangmanMain
 		public void StartGame()
 		{
 			renderer.PrintWelcomeMessage();
-            renderer.PrintUserWordMessage(userWord);
+            renderer.PrintUserWordMessage(wordToDisplay);
 
 			while (!isGameOver)
 			{
@@ -95,7 +93,7 @@ namespace HangmanMain
 
         private bool IsWordGuessed()
         {
-            if (userWord==dashWord)
+            if (wordToDisplay==wordToGuess)
             {
                 return true;
             }
@@ -108,12 +106,12 @@ namespace HangmanMain
 			switch (command)
 			{
 				case "help":
-                    char revealedLetter = letterHandler.GetRevealedLetter(dashWord, userWord);
+                    char revealedLetter = letterHandler.GetRevealedLetter(wordToDisplay);
                     renderer.PrintRevealMessage(revealedLetter);
 
-					letterHandler.RevealLetter(dashWord, ref userWord);
+					letterHandler.RevealLetter(ref wordToDisplay);
 
-                    renderer.PrintUserWordMessage(userWord);
+                    renderer.PrintUserWordMessage(wordToDisplay);
 					break;
 				case "top":
 					this.renderer.PrintScoreboard(scoreManager.TopPlayers);
@@ -126,7 +124,7 @@ namespace HangmanMain
 					break;
 				default:
                     this.guessedLetter = command[0];
-					this.letterHandler.HandleLetterGuess(guessedLetter, dashWord, ref userWord, out letterStatus);
+					this.letterHandler.HandleLetterGuess(guessedLetter, ref wordToDisplay, out letterStatus);
                     
                     // TODO: if IsWordGuessed
                     //       PrintWinning/PrintCheatingMessage
@@ -139,7 +137,7 @@ namespace HangmanMain
                           // else
                     // TODO: check letterStatus and print appropriate messages
 
-                    renderer.PrintUserWordMessage(userWord);
+                    renderer.PrintUserWordMessage(wordToDisplay);
 					break;
 			}
 		}
