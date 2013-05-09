@@ -21,8 +21,8 @@ namespace HangmanMain
         {
             Random randomizer = new Random();
             int wordIndex = randomizer.Next(0, this.words.Length);
-
-            return words[wordIndex];
+			string randomWord = words[wordIndex];
+			return randomWord;
         }
     }
 }

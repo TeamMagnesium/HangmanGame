@@ -25,26 +25,15 @@ namespace HangmanMain
 			this.isGameOver = false;
             this.generator = new RandomWordGenerator();
 			this.wordToGuess = generator.AssignRandomWord();
-			this.wordToDisplay = BlankWord(wordToGuess.Length);
+			this.wordToDisplay = GenerateBlankWord(wordToGuess.Length);
 			this.letterHandler = new LetterHandler(wordToGuess);
             this.renderer = new ConsoleRenderer();
             this.parser = new CommandParser();
         }
 
-        private string BlankWord(int length)
+        private string GenerateBlankWord(int length)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            string blankWord;
-
-            for (int i = 0; i < length; i++)
-            {
-                stringBuilder.Append("_ ");
-            }
-
-            blankWord = stringBuilder.ToString();
-            string trimmedBlankWord = blankWord.TrimEnd();
-
-            return trimmedBlankWord;
+            return new String('_', length);
         }
 
 		public Game(ScoreManager scoreManager)
@@ -70,7 +59,7 @@ namespace HangmanMain
                 catch (ArgumentException)
                 {
                     renderer.PrintIncorrectInputMessage();
-                }			
+                }
 			}
 		}
 

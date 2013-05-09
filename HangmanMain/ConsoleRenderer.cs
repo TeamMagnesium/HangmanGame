@@ -17,9 +17,9 @@
             Console.WriteLine(printMessage.ToString());
         }
 
-        public void PrintUserWordMessage(string userWord)
+        public void PrintUserWordMessage(string wordToDisplay)
         {
-            Console.WriteLine("The secret word is {0}", userWord);
+			Console.WriteLine("The secret word is {0}", GetSpaceSeparatedWord(wordToDisplay));
         }
 
         public void PrintEnterGuessOrCommandMessage()
@@ -147,5 +147,10 @@
             string printMessage = "Good bye!";
             Console.WriteLine(printMessage);
         }
+
+		private string GetSpaceSeparatedWord(string word)
+		{
+			return String.Join(" ", word.ToCharArray());
+		}
     }
 }

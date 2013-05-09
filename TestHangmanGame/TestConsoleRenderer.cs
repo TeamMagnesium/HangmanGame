@@ -52,7 +52,7 @@
                 renderer.PrintUserWordMessage("arr_ _");
 
                 string expected = string.Format(
-                    "The secret word is arr_ _{0}Enter your guess or command: ", Environment.NewLine);
+                    "The secret word is a r r _ _{0}Enter your guess or command: ", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
@@ -189,7 +189,7 @@
                 Console.SetOut(stringWriter);
                 renderer.PrintIncorrectInputMessage();
                 string expected = string.Format(
-                    "Incorrect guess or command!{0}Enter your guess or command:", Environment.NewLine);
+                    "Incorrect guess or command!{0}Enter your guess or command:{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
@@ -227,7 +227,7 @@
             {
                 Console.SetOut(stringWriter);
                 renderer.PrintScoreboard(scoreboard);
-                string expected = "There are no records in the scoreboard.";
+                string expected = String.Format("There are no records in the scoreboard.{0}",Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
