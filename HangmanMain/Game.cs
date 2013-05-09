@@ -12,7 +12,6 @@ namespace HangmanMain
 		private string userInput;
 		private bool isGameOver;
 		private bool usedHelp;
-		private ushort mistakes;
 		private char guessedLetter;
 		private LetterStatus letterStatus;
 
@@ -24,7 +23,6 @@ namespace HangmanMain
 
 		private void InitializeGameSettings()
 		{
-			this.mistakes = 0;
 			this.isGameOver = false;
 			this.usedHelp = false;
 			this.generator = new RandomWordGenerator();
@@ -121,19 +119,19 @@ namespace HangmanMain
 					switch (letterStatus)
 					{
 						case LetterStatus.Correct:
-							this.renderer.PrintCorrectLetterMessage(guessedLetter);
+							this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
 							if (IsWordGuessed())
 							{
 								if (this.usedHelp)
 								{
-									this.renderer.PrintCheatingMessage(mistakes);
+									this.renderer.PrintCheatingMessage(this.letterHandler.WrongLettersCount);
 								}
 								else
 								{
 									this.renderer.PrintGetNameForScoreboard();
 									Player player = new Player();
 									player.Name = Console.ReadLine();
-									player.Mistakes = this.mistakes;
+									player.Mistakes = this.letterHandler.WrongLettersCount;
 									this.scoreManager.AddPlayerToScoreBoard(player);
 									this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
 									this.RestartGame();
@@ -141,7 +139,6 @@ namespace HangmanMain
 							}
 							break;
 						case LetterStatus.Incorrect:
-							this.mistakes++;
 							this.renderer.PrintIncorrectLetterMessage(guessedLetter);
 							break;
 						case LetterStatus.Repeating:
