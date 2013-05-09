@@ -49,7 +49,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                renderer.PrintUserWordMessage("arr__");
+                renderer.PrintWordToDisplayMessage("arr__");
 
                 string expected = string.Format(
                     "The secret word is a r r _ _{0}", Environment.NewLine);
@@ -176,7 +176,7 @@
             {
                 Console.SetOut(stringWriter);
                 renderer.PrintGetNameForScoreboard();
-                string expected = "Please enter your name for the top scoreboard:";
+                string expected = "Please enter your name for the top scoreboard: ";
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }

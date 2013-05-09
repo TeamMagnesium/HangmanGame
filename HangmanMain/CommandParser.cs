@@ -22,7 +22,7 @@ namespace HangmanMain
 			}
 			else
 			{
-				throw new ArgumentException("Invalid command. Allowed commands are top, restart, help, exit, or a letter guess.");
+				throw new ArgumentException();
 			}
 
 			return command;

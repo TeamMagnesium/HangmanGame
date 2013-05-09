@@ -45,7 +45,7 @@ namespace HangmanMain
 		public void StartGame()
 		{
 			renderer.PrintWelcomeMessage();
-			renderer.PrintUserWordMessage(wordToDisplay);
+			renderer.PrintWordToDisplayMessage(wordToDisplay);
 
 			while (!isGameOver)
 			{
@@ -66,6 +66,7 @@ namespace HangmanMain
 		public void RestartGame()
 		{
 			InitializeGameSettings();
+            renderer.PrintNewLine();
 			StartGame();
 		}
 
@@ -99,7 +100,7 @@ namespace HangmanMain
 					char revealedLetter = letterHandler.GetRevealedLetter(wordToDisplay);
 					renderer.PrintRevealMessage(revealedLetter);
 					letterHandler.RevealLetter(ref wordToDisplay);
-					renderer.PrintUserWordMessage(wordToDisplay);
+					renderer.PrintWordToDisplayMessage(wordToDisplay);
 					break;
 				case "top":
 					this.renderer.PrintScoreboard(scoreManager.TopPlayers);
@@ -117,7 +118,7 @@ namespace HangmanMain
 					switch (letterStatus)
 					{
 						case LetterStatus.Correct:
-							if (!IsWordGuessed())
+							if (IsWordGuessed() == false)
 							{
 								this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
 							}
@@ -126,31 +127,40 @@ namespace HangmanMain
 								if (this.usedHelp)
 								{
 									this.renderer.PrintCheatingMessage(this.letterHandler.WrongLettersCount);
+                                    this.renderer.PrintWordToDisplayMessage(this.wordToDisplay);
 								}
 								else
 								{
 									this.renderer.PrintWinningMessage(this.letterHandler.WrongLettersCount);
-									this.renderer.PrintUserWordMessage(this.wordToDisplay);
-									this.renderer.PrintGetNameForScoreboard();
-									Player player = new Player();
-									player.Name = Console.ReadLine();
-									player.Mistakes = this.letterHandler.WrongLettersCount;
-									this.scoreManager.AddPlayerToScoreBoard(player);
+									this.renderer.PrintWordToDisplayMessage(this.wordToDisplay);
+
+                                    if (this.scoreManager.IsPlayerTop(this.letterHandler.WrongLettersCount))
+                                    {
+                                        this.renderer.PrintGetNameForScoreboard();
+                                        Player player = new Player();
+                                        player.Name = Console.ReadLine();
+                                        player.Mistakes = this.letterHandler.WrongLettersCount;
+                                        this.scoreManager.AddPlayerToScoreBoard(player);
+                                    }
+									
 									this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
 								}
+                                
 								this.RestartGame();
 							}
 							break;
+
 						case LetterStatus.Incorrect:
 							this.renderer.PrintIncorrectLetterMessage(guessedLetter);
 							break;
+
 						case LetterStatus.Repeating:
 							this.renderer.PrintRepeatingLetterMessage(guessedLetter);
 							break;
 						default:
 							break;
 					}
-					renderer.PrintUserWordMessage(wordToDisplay);
+					renderer.PrintWordToDisplayMessage(wordToDisplay);
 					break;
 			}
 		}

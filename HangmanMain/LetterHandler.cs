@@ -51,7 +51,6 @@ namespace HangmanMain
 				if (wordToGuess.Contains(guessedLetter))
 				{
 					letterStatus = LetterStatus.Correct;
-					this.GuessedLettersCount++;
 					wordToDisplay = FillLetter(guessedLetter, wordToDisplay);
 				}
 				else
@@ -64,12 +63,15 @@ namespace HangmanMain
 
 		private string FillLetter(char letter, string wordToDisplay)
         {
+            this.GuessedLettersCount = 0;
+
 			char[] wordAfterLetterFill = wordToDisplay.ToCharArray();
 			for (int i = 0; i < wordAfterLetterFill.Length; i++)
 			{
 				if (wordToGuess[i] == letter)
 				{
 					wordAfterLetterFill[i] = letter;
+                    this.GuessedLettersCount++;
 				}
 			}
 			return String.Join("",wordAfterLetterFill);

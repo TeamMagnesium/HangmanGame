@@ -8,6 +8,11 @@
     {
         public const int MaxNumberOfTopPlayers = 5;
 
+        public void PrintNewLine()
+        {
+            Console.WriteLine();
+        }
+
         public void PrintWelcomeMessage()
         {
             StringBuilder printMessage = new StringBuilder();
@@ -17,7 +22,7 @@
             Console.WriteLine(printMessage.ToString());
         }
 
-        public void PrintUserWordMessage(string wordToDisplay)
+        public void PrintWordToDisplayMessage(string wordToDisplay)
         {
 			Console.WriteLine("The secret word is {0}", GetSpaceSeparatedWord(wordToDisplay));
         }
@@ -93,7 +98,7 @@
 
         public void PrintGetNameForScoreboard()
         {
-            string printMessage = string.Format("Please enter your name for the top scoreboard:");
+            string printMessage = string.Format("Please enter your name for the top scoreboard: ");
 
             Console.Write(printMessage);
         }

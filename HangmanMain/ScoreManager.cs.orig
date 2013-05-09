@@ -7,7 +7,11 @@ namespace HangmanMain
 {
     public class ScoreManager
     {
+<<<<<<< HEAD
+        private const int MAX_NUMBER_OF_PLAYERS = 5;
+=======
         private const int MaxNumberOFPlayers = 5;
+>>>>>>> 66c46dce79477035bd9e545ccf7a21ec6b4e9a30
 
         private List<Player> topPlayers = new List<Player>();
         public List<Player> TopPlayers
@@ -17,9 +21,15 @@ namespace HangmanMain
         }
         
 
+<<<<<<< HEAD
+        public bool isPlayerTop(int mistakes)
+        {
+            if (topPlayers.Count < MAX_NUMBER_OF_PLAYERS)
+=======
         public bool IsPlayerTop(int mistakes)
         {
             if (topPlayers.Count < MaxNumberOFPlayers)
+>>>>>>> 66c46dce79477035bd9e545ccf7a21ec6b4e9a30
             {
                 return true;
             }
@@ -32,12 +42,20 @@ namespace HangmanMain
                 }
             }
 
+<<<<<<< HEAD
             return false;            
+=======
+            return false;
+>>>>>>> 66c46dce79477035bd9e545ccf7a21ec6b4e9a30
         }
 
         public void AddPlayerToScoreBoard(Player player)
         {
+<<<<<<< HEAD
+            if (topPlayers.Count < MAX_NUMBER_OF_PLAYERS)
+=======
             if (topPlayers.Count < MaxNumberOFPlayers)
+>>>>>>> 66c46dce79477035bd9e545ccf7a21ec6b4e9a30
             {
                 topPlayers.Add(player);
             }
@@ -58,7 +76,9 @@ namespace HangmanMain
 
         private void SortPlayers()
         {
-            topPlayers.Sort((Player firstPlayer, Player secondPlayer) => -(secondPlayer.Mistakes.CompareTo(firstPlayer.Mistakes)));
+            // not sure if sorting works right
+            topPlayers.Sort((Player firstPlayer, Player secondPlayer) => firstPlayer.Mistakes.CompareTo(secondPlayer.Mistakes));
+            topPlayers.Sort((Player firstPlayer, Player secondPlayer) => secondPlayer.Name.CompareTo(firstPlayer.Name));
         }
     }
 }
