@@ -119,8 +119,11 @@ namespace HangmanMain
 					switch (letterStatus)
 					{
 						case LetterStatus.Correct:
-							this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
-							if (IsWordGuessed())
+							if (!IsWordGuessed())
+							{
+								this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
+							}
+							else
 							{
 								if (this.usedHelp)
 								{
@@ -128,14 +131,16 @@ namespace HangmanMain
 								}
 								else
 								{
+									this.renderer.PrintWinningMessage(this.letterHandler.WrongLettersCount);
+									this.renderer.PrintUserWordMessage(this.wordToDisplay);
 									this.renderer.PrintGetNameForScoreboard();
 									Player player = new Player();
 									player.Name = Console.ReadLine();
 									player.Mistakes = this.letterHandler.WrongLettersCount;
 									this.scoreManager.AddPlayerToScoreBoard(player);
 									this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
-									this.RestartGame();
 								}
+								this.RestartGame();
 							}
 							break;
 						case LetterStatus.Incorrect:
