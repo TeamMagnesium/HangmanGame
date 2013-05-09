@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public class Player
+    public struct Player
     {
         private string name;
         public string Name

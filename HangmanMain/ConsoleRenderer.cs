@@ -55,6 +55,11 @@
             Console.WriteLine(printMessage);
         }
 
+        public void PrintRepeatingLetterMessage(char guessedLetter)
+        {
+            // TODO: print appropriate message, i.e You already guessed the letter "a"!
+        }
+
         public void PrintWinningMessage(int mistakes)
         {
             string printMessage;
@@ -135,7 +140,7 @@
         {
             string printMessage = "Incorrect guess or command!";
             Console.WriteLine(printMessage);
-        }
+        }        
 
         public void PrintExitMessage()
         {

@@ -10,8 +10,9 @@ namespace HangmanMain
 		private string dashWord;
 		private string userWord;
 		private string userInput;
-		private bool isWordGuessed;
 		private bool isGameOver;
+        private char guessedLetter;
+        private LetterStatus letterStatus;
 
 		private LetterHandler letterHandler;
 		private ScoreManager scoreManager;
@@ -22,7 +23,6 @@ namespace HangmanMain
         private void InitializeGameSettings()
         {
             this.isGameOver = false;
-            this.isWordGuessed = false;
             
             this.generator = new RandomWordGenerator();            
             this.letterHandler = new LetterHandler();
@@ -92,13 +92,27 @@ namespace HangmanMain
 			renderer.PrintExitMessage();
 			EndGame();
 		}
+
+        private bool IsWordGuessed()
+        {
+            if (userWord==dashWord)
+            {
+                return true;
+            }
+
+            return false;
+        }
         
 		private void ExecuteCommand(string command)
 		{
 			switch (command)
 			{
 				case "help":
-					this.letterHandler.RevealLetter();
+                    char revealedLetter = letterHandler.GetRevealedLetter(dashWord, userWord);
+                    renderer.PrintRevealMessage(revealedLetter);
+
+					letterHandler.RevealLetter(dashWord, ref userWord);
+
                     renderer.PrintUserWordMessage(userWord);
 					break;
 				case "top":
@@ -111,7 +125,20 @@ namespace HangmanMain
 					ExitGame();
 					break;
 				default:
-					this.letterHandler.HandleLetterGuess(command[0]);
+                    this.guessedLetter = command[0];
+					this.letterHandler.HandleLetterGuess(guessedLetter, dashWord, ref userWord, out letterStatus);
+                    
+                    // TODO: if IsWordGuessed
+                    //       PrintWinning/PrintCheatingMessage
+                    //       PrintUserWordMessage
+                    //       PrintGetNameForScoreboard
+                    //       AddPlayerToScoreboard
+                    //       PrintScoreboard
+                    //       Restart game
+
+                          // else
+                    // TODO: check letterStatus and print appropriate messages
+
                     renderer.PrintUserWordMessage(userWord);
 					break;
 			}
