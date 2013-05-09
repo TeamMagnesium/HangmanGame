@@ -11,6 +11,9 @@ namespace HangmanMain
 
 		private readonly string wordToGuess;
 
+		public int GuessedLettersCount { get; private set; }
+		public int WrongLettersCount { get; private set; }
+
 		public LetterHandler(string word)
 		{
 			this.wordToGuess = word;
@@ -47,12 +50,14 @@ namespace HangmanMain
 				triedLetters.Add(guessedLetter);
 				if (wordToGuess.Contains(guessedLetter))
 				{
-					wordToDisplay = FillLetter(guessedLetter, wordToDisplay);
 					letterStatus = LetterStatus.Correct;
+					this.GuessedLettersCount++;
+					wordToDisplay = FillLetter(guessedLetter, wordToDisplay);
 				}
 				else
 				{
 					letterStatus = LetterStatus.Incorrect;
+					this.WrongLettersCount++;
 				}
 			}
         }
