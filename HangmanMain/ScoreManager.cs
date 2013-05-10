@@ -5,9 +5,26 @@ using System.Text;
 
 namespace HangmanMain
 {
-    public class ScoreManager
+    public sealed class ScoreManager
     {
         private const int MaxNumberOFPlayers = 5;
+
+        private static ScoreManager instance;
+
+        private ScoreManager() { }
+
+        public static ScoreManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ScoreManager();
+                }
+
+                return instance;
+            }
+        }        
 
         private List<Player> topPlayers = new List<Player>();
         public List<Player> TopPlayers
@@ -15,7 +32,7 @@ namespace HangmanMain
             get { return topPlayers; }
             private set { topPlayers = value; }
         }
-        
+
 
         public bool IsPlayerTop(int mistakes)
         {
@@ -32,7 +49,7 @@ namespace HangmanMain
                 }
             }
 
-            return false;            
+            return false;
         }
 
         public void AddPlayerToScoreBoard(Player player)

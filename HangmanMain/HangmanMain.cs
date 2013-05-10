@@ -9,8 +9,7 @@ namespace HangmanMain
 	{ 
 		static void Main()
 		{
-			var scoreManager = new ScoreManager();
-			var game = new Game(scoreManager);
+			Game game = new Game();
 			game.StartGame();
 		}
 	}

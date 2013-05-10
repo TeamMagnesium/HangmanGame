@@ -14,7 +14,7 @@ namespace HangmanMain
 		private LetterStatus letterStatus;
 
 		private LetterHandler letterHandler;
-		private readonly ScoreManager scoreManager;
+		private ScoreManager scoreManager;
 		private RandomWordGenerator generator;
 		private ConsoleRenderer renderer;
 		private CommandParser parser;
@@ -23,12 +23,15 @@ namespace HangmanMain
 		{
 			this.isGameOver = false;
 			this.usedHelp = false;
+
 			this.generator = new RandomWordGenerator();
-			this.wordToGuess = generator.AssignRandomWord();
-			this.wordToDisplay = GenerateBlankWord(wordToGuess.Length);
-			this.letterHandler = new LetterHandler(wordToGuess);
-			this.renderer = new ConsoleRenderer();
-			this.parser = new CommandParser();
+            this.wordToGuess = generator.AssignRandomWord();
+            this.wordToDisplay = GenerateBlankWord(wordToGuess.Length);
+
+            this.letterHandler = new LetterHandler(wordToGuess);
+            this.renderer = new ConsoleRenderer();
+            this.parser = new CommandParser();
+            this.scoreManager = ScoreManager.Instance;
 		}
 
 		private string GenerateBlankWord(int length)
@@ -36,29 +39,28 @@ namespace HangmanMain
 			return new String('_', length);
 		}
 
-		public Game(ScoreManager scoreManager)
+		public Game()
 		{
 			InitializeGameSettings();
-			this.scoreManager = scoreManager;
 		}
 
 		public void StartGame()
 		{
-			renderer.PrintWelcomeMessage();
-			renderer.PrintWordToDisplayMessage(wordToDisplay);
+            this.renderer.PrintWelcomeMessage();
+            this.renderer.PrintWordToDisplayMessage(wordToDisplay);
 
 			while (!isGameOver)
 			{
 				try
 				{
-					renderer.PrintEnterGuessOrCommandMessage();
+                    this.renderer.PrintEnterGuessOrCommandMessage();
 					userInput = Console.ReadLine();
 					string command = parser.ParseCommand(userInput);
 					ExecuteCommand(command);
 				}
 				catch (ArgumentException)
 				{
-					renderer.PrintIncorrectInputMessage();
+                    this.renderer.PrintIncorrectInputMessage();
 				}
 			}
 		}
@@ -66,7 +68,7 @@ namespace HangmanMain
 		public void RestartGame()
 		{
 			InitializeGameSettings();
-            renderer.PrintNewLine();
+            this.renderer.PrintNewLine();
 			StartGame();
 		}
 
@@ -77,7 +79,7 @@ namespace HangmanMain
 
 		public void ExitGame()
 		{
-			renderer.PrintExitMessage();
+			this.renderer.PrintExitMessage();
 			EndGame();
 		}
 
@@ -97,13 +99,13 @@ namespace HangmanMain
 			{
 				case "help":
 					this.usedHelp = true;
-					char revealedLetter = letterHandler.GetRevealedLetter(wordToDisplay);
-					renderer.PrintRevealMessage(revealedLetter);
-					letterHandler.RevealLetter(ref wordToDisplay);
-					renderer.PrintWordToDisplayMessage(wordToDisplay);
+                    char revealedLetter = this.letterHandler.GetRevealedLetter(wordToDisplay);
+                    this.renderer.PrintRevealMessage(revealedLetter);
+                    this.letterHandler.RevealLetter(ref wordToDisplay);
+                    this.renderer.PrintWordToDisplayMessage(wordToDisplay);
 					break;
 				case "top":
-					this.renderer.PrintScoreboard(scoreManager.TopPlayers);
+                    this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
 					break;
 				case "restart":
 					RestartGame();
@@ -160,7 +162,7 @@ namespace HangmanMain
 						default:
 							break;
 					}
-					renderer.PrintWordToDisplayMessage(wordToDisplay);
+                    this.renderer.PrintWordToDisplayMessage(wordToDisplay);
 					break;
 			}
 		}
