@@ -3,21 +3,21 @@
   <Class Name="HangmanMain.ConsoleRenderer">
     <Position X="2.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAgBACAAAAAAAAAIQAAAAAAEQEIAAA=</HashCode>
+      <HashCode>AAEAAAAAAFAAggAgBAAABAAAAAAAIQAEAAAAEQEIAAI=</HashCode>
       <FileName>ConsoleRenderer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HangmanMain.RandomWordGenerator">
     <Position X="4" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>RandomWordGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HangmanMain.LetterHandler">
     <Position X="5.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAIAAAACAAAAAAAiAAAAAAAACAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAAQAAAAAAAIEAACAAAiAAAAEAAAAAAAAA=</HashCode>
       <FileName>LetterHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,16 +29,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HangmanMain.ScoreManager">
-    <Position X="5.75" Y="3.25" Width="1.5" />
+    <Position X="5.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAQAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAgAAAAAAAAAAAJCAAAAQAAAAAAEAAA=</HashCode>
       <FileName>ScoreManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HangmanMain.Game">
     <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAAQgAA=</HashCode>
+      <HashCode>AIAAABIAAEAAEABEAAAEAECgAAAAAAAQBAgAIAAQ4AA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
