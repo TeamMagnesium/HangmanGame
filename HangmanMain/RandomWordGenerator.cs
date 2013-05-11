@@ -11,7 +11,6 @@ namespace HangmanMain
         public string[] Words
         {
             get { return words; }
-            private set { words = value; }
         }
 
         public RandomWordGenerator()

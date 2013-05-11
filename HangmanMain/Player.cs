@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace HangmanMain
 {
-    public struct Player
+    public class Player
     {
         private string name;
         public string Name
@@ -18,12 +19,18 @@ namespace HangmanMain
         public int Mistakes
         {
             get { return mistakes; }
-            set { mistakes = value; }
-        }
+            set
+            {
+                Debug.Assert(mistakes >= 0, "Mistakes cannot be less than 0!");
+                mistakes = value; 
+            }
+        }        
 
         public Player(string name, int mistakes)
         {
             this.name = name;
+
+            Debug.Assert(mistakes >= 0, "Mistakes cannot be less than 0!");
             this.mistakes = mistakes;
         }
     }

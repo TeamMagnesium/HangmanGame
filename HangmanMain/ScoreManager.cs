@@ -30,7 +30,6 @@ namespace HangmanMain
         public List<Player> TopPlayers
         {
             get { return topPlayers; }
-            private set { topPlayers = value; }
         }
 
 

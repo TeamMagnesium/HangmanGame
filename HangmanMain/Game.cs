@@ -139,9 +139,10 @@ namespace HangmanMain
                                     if (this.scoreManager.IsPlayerTop(this.letterHandler.WrongLettersCount))
                                     {
                                         this.renderer.PrintGetNameForScoreboard();
-                                        Player player = new Player();
-                                        player.Name = Console.ReadLine();
-                                        player.Mistakes = this.letterHandler.WrongLettersCount;
+                                        string playerName = Console.ReadLine();
+                                        int playerMistakes = this.letterHandler.WrongLettersCount;
+                                        Player player = new Player(playerName, playerMistakes-10);
+                                                                                
                                         this.scoreManager.AddPlayerToScoreBoard(player);
                                     }
 									
