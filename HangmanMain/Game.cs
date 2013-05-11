@@ -11,7 +11,6 @@ namespace HangmanMain
 		private bool isGameOver;
 		private bool usedHelp;
 		private char guessedLetter;
-		private LetterStatus letterStatus;
 
 		private LetterHandler letterHandler;
 		private ScoreManager scoreManager;
@@ -115,12 +114,13 @@ namespace HangmanMain
 					break;
 				default:
 					this.guessedLetter = command[0];
+					LetterStatus letterStatus;
 					this.letterHandler.HandleLetterGuess(guessedLetter, ref wordToDisplay, out letterStatus);
 
 					switch (letterStatus)
 					{
 						case LetterStatus.Correct:
-							if (IsWordGuessed() == false)
+							if (!IsWordGuessed())
 							{
 								this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
 							}
