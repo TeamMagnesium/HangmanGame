@@ -58,9 +58,9 @@ namespace HangmanMain
 					string command = parser.ParseCommand(userInput);
 					ExecuteCommand(command);
 				}
-				catch (ArgumentException)
+				catch (ArgumentException argumentException)
 				{
-                    this.renderer.PrintIncorrectInputMessage();
+                    this.renderer.PrintIncorrectInputMessage(argumentException.Message);
 				}
 			}
 		}

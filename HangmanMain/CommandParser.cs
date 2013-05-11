@@ -22,7 +22,7 @@ namespace HangmanMain
 			}
 			else
 			{
-				throw new ArgumentException();
+                throw new ArgumentException("Incorrect guess or command!");
 			}
 
 			return command;

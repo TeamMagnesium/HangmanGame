@@ -6,7 +6,6 @@
 
     public class ConsoleRenderer
     {
-        public const int MaxNumberOfTopPlayers = 5;
 
         public void PrintNewLine()
         {
@@ -106,25 +105,15 @@
         public void PrintScoreboard(List<Player> topPlayers)
         {
             StringBuilder printMessage = new StringBuilder();
-            int listCount = 0;
-
-            if (topPlayers.Count > MaxNumberOfTopPlayers)
-            {
-                listCount = MaxNumberOfTopPlayers;
-            }
-            else
-            {
-                listCount = topPlayers.Count;
-            }
-
-            if (listCount == 0)
+           
+            if (topPlayers.Count == 0)
             {
                 printMessage.AppendLine("There are no records in the scoreboard.");
             }
             else
             {
                 printMessage.Append("Scoreboard:\r\n");
-                for (int i = 0; i < listCount; i++)
+                for (int i = 0; i < topPlayers.Count; i++)
                 {
                     if (topPlayers[i].Mistakes == 1)
                     {
@@ -142,10 +131,9 @@
             Console.Write(printMessage);
         }
 
-        public void PrintIncorrectInputMessage()
+        public void PrintIncorrectInputMessage(string exceptionMessage)
         {
-            string printMessage = "Incorrect guess or command!";
-            Console.WriteLine(printMessage);
+            Console.WriteLine(exceptionMessage);
         }        
 
         public void PrintExitMessage()

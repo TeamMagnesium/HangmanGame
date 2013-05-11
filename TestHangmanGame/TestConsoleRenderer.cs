@@ -187,7 +187,7 @@
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);
-                renderer.PrintIncorrectInputMessage();
+                renderer.PrintIncorrectInputMessage("Incorrect guess or command!");
                 string expected = string.Format(
                     "Incorrect guess or command!{0}", Environment.NewLine);
                 Assert.AreEqual(expected, stringWriter.ToString());
@@ -255,6 +255,18 @@
                 Console.SetOut(stringWriter);
                 renderer.PrintScoreboard(scoreboard);
                 string expected = string.Format("Scoreboard:{0}1. Ivan --> 0 mistakes{0}", Environment.NewLine);
+                Assert.AreEqual(expected, stringWriter.ToString());
+            }
+        }
+
+        [TestMethod]
+        public void ValidateConsolePrintNewLine()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                renderer.PrintNewLine();
+                string expected = Environment.NewLine;
                 Assert.AreEqual(expected, stringWriter.ToString());
             }
         }
