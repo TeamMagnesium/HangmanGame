@@ -141,7 +141,7 @@ namespace HangmanMain
                                         this.renderer.PrintGetNameForScoreboard();
                                         string playerName = Console.ReadLine();
                                         int playerMistakes = this.letterHandler.WrongLettersCount;
-                                        Player player = new Player(playerName, playerMistakes-10);
+                                        Player player = new Player(playerName, playerMistakes);
                                                                                 
                                         this.scoreManager.AddPlayerToScoreBoard(player);
                                     }
