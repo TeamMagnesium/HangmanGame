@@ -27,6 +27,19 @@
         }
 
         [TestMethod]
+        public void ValidateConsolePrintEnterYourGuessOrCommand()
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                renderer.PrintEnterGuessOrCommandMessage();
+
+                string expected = "Enter your guess or command: ";
+                Assert.AreEqual(expected, stringWriter.ToString());
+            }
+        }
+
+        [TestMethod]
         public void ValidateConsoleWelcomeMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
