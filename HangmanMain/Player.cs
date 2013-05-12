@@ -12,18 +12,12 @@ namespace HangmanMain
         public string Name
         {
             get { return name; }
-            set { name = value; }
         }
 
         private int mistakes;
         public int Mistakes
         {
             get { return mistakes; }
-            set
-            {
-                Debug.Assert(mistakes >= 0, "Mistakes cannot be less than 0!");
-                mistakes = value; 
-            }
         }        
 
         public Player(string name, int mistakes)
