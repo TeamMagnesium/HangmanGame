@@ -32,13 +32,14 @@ namespace HangmanMain
 			return revealedLetter;
         }
 
-		public void RevealLetter(ref string wordToDisplay)
+		public string RevealLetter(string wordToDisplay)
         {
 			char revealedLetter = GetRevealedLetter(wordToDisplay);
 			wordToDisplay = FillLetter(revealedLetter, wordToDisplay);
+			return wordToDisplay;
         }
 
-		public void HandleLetterGuess(char guessedLetter, ref string wordToDisplay, out LetterStatus letterStatus)
+		public string HandleLetterGuess(char guessedLetter, string wordToDisplay, out LetterStatus letterStatus)
         {
 			if (triedLetters.Contains(guessedLetter))
 			{
@@ -58,6 +59,7 @@ namespace HangmanMain
 					this.WrongLettersCount++;
 				}
 			}
+			return wordToDisplay;
         }
 
 		private string FillLetter(char letter, string wordToDisplay)

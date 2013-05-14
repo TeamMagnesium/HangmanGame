@@ -5,12 +5,10 @@ namespace HangmanMain
 {
 	public class Game
 	{
-		private string wordToGuess;
-		private string wordToDisplay;
-		private string userInput;
-		private bool isGameOver;
-		private bool usedHelp;
-		private char guessedLetter;
+		public string WordToGuess { get; private set; }
+		public string WordToDisplay { get; private set; }
+		public bool IsGameOver { get; private set; }
+		public bool UsedHelp { get; private set; }
 
 		private LetterHandler letterHandler;
 		private ScoreManager scoreManager;
@@ -20,14 +18,14 @@ namespace HangmanMain
 
 		private void InitializeGameSettings()
 		{
-			this.isGameOver = false;
-			this.usedHelp = false;
+			this.IsGameOver = false;
+			this.UsedHelp = false;
 
 			this.generator = new RandomWordGenerator();
-            this.wordToGuess = generator.AssignRandomWord();
-            this.wordToDisplay = GenerateBlankWord(wordToGuess.Length);
+            this.WordToGuess = generator.AssignRandomWord();
+            this.WordToDisplay = GenerateBlankWord(WordToGuess.Length);
 
-            this.letterHandler = new LetterHandler(wordToGuess);
+            this.letterHandler = new LetterHandler(WordToGuess);
             this.renderer = new ConsoleRenderer();
             this.parser = new CommandParser();
             this.scoreManager = ScoreManager.Instance;
@@ -46,14 +44,14 @@ namespace HangmanMain
 		public void StartGame()
 		{
             this.renderer.PrintWelcomeMessage();
-            this.renderer.PrintWordToDisplayMessage(wordToDisplay);
+            this.renderer.PrintWordToDisplayMessage(WordToDisplay);
 
-			while (!isGameOver)
+			while (!IsGameOver)
 			{
 				try
 				{
                     this.renderer.PrintEnterGuessOrCommandMessage();
-					userInput = Console.ReadLine();
+					string userInput = Console.ReadLine();
 					string command = parser.ParseCommand(userInput);
 					ExecuteCommand(command);
 				}
@@ -73,7 +71,7 @@ namespace HangmanMain
 
 		public void EndGame()
 		{
-			isGameOver = true;
+			IsGameOver = true;
 		}
 
 		public void ExitGame()
@@ -84,7 +82,7 @@ namespace HangmanMain
 
 		private bool IsWordGuessed()
 		{
-			if (wordToDisplay == wordToGuess)
+			if (WordToDisplay == WordToGuess)
 			{
 				return true;
 			}
@@ -92,16 +90,16 @@ namespace HangmanMain
 			return false;
 		}
         
-		private void ExecuteCommand(string command)
+		public void ExecuteCommand(string command)
 		{
-			switch (command)
+			switch (command.ToLower())
 			{
 				case "help":
-					this.usedHelp = true;
-                    char revealedLetter = this.letterHandler.GetRevealedLetter(wordToDisplay);
+					this.UsedHelp = true;
+                    char revealedLetter = this.letterHandler.GetRevealedLetter(this.WordToDisplay);
                     this.renderer.PrintRevealMessage(revealedLetter);
-                    this.letterHandler.RevealLetter(ref wordToDisplay);
-                    this.renderer.PrintWordToDisplayMessage(wordToDisplay);
+					this.WordToDisplay = this.letterHandler.RevealLetter(this.WordToDisplay);
+                    this.renderer.PrintWordToDisplayMessage(this.WordToDisplay);
 					break;
 				case "top":
                     this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
@@ -113,57 +111,60 @@ namespace HangmanMain
 					ExitGame();
 					break;
 				default:
-					this.guessedLetter = command[0];
+					char guessedLetter = command[0];
 					LetterStatus letterStatus;
-					this.letterHandler.HandleLetterGuess(guessedLetter, ref wordToDisplay, out letterStatus);
+					this.WordToDisplay = this.letterHandler.HandleLetterGuess(guessedLetter, this.WordToDisplay, out letterStatus);
+					HandleLetterGuessCommand(guessedLetter, letterStatus);
+                    this.renderer.PrintWordToDisplayMessage(WordToDisplay);
+					break;
+			}
+		}
 
-					switch (letterStatus)
+		private void HandleLetterGuessCommand(char guessedLetter, LetterStatus letterStatus)
+		{
+			switch (letterStatus)
+			{
+				case LetterStatus.Correct:
+					if (!IsWordGuessed())
 					{
-						case LetterStatus.Correct:
-							if (!IsWordGuessed())
-							{
-								this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
-							}
-							else
-							{
-								if (this.usedHelp)
-								{
-									this.renderer.PrintCheatingMessage(this.letterHandler.WrongLettersCount);
-                                    this.renderer.PrintWordToDisplayMessage(this.wordToDisplay);
-								}
-								else
-								{
-									this.renderer.PrintWinningMessage(this.letterHandler.WrongLettersCount);
-									this.renderer.PrintWordToDisplayMessage(this.wordToDisplay);
-
-                                    if (this.scoreManager.IsPlayerTop(this.letterHandler.WrongLettersCount))
-                                    {
-                                        this.renderer.PrintGetNameForScoreboard();
-                                        string playerName = Console.ReadLine();
-                                        int playerMistakes = this.letterHandler.WrongLettersCount;
-                                        Player player = new Player(playerName, playerMistakes);
-                                                                                
-                                        this.scoreManager.AddPlayerToScoreBoard(player);
-                                    }
-									
-									this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
-								}
-                                
-								this.RestartGame();
-							}
-							break;
-
-						case LetterStatus.Incorrect:
-							this.renderer.PrintIncorrectLetterMessage(guessedLetter);
-							break;
-
-						case LetterStatus.Repeating:
-							this.renderer.PrintRepeatingLetterMessage(guessedLetter);
-							break;
-						default:
-							break;
+						this.renderer.PrintCorrectLetterMessage(this.letterHandler.GuessedLettersCount);
 					}
-                    this.renderer.PrintWordToDisplayMessage(wordToDisplay);
+					else
+					{
+						if (this.UsedHelp)
+						{
+							this.renderer.PrintCheatingMessage(this.letterHandler.WrongLettersCount);
+							this.renderer.PrintWordToDisplayMessage(this.WordToDisplay);
+						}
+						else
+						{
+							this.renderer.PrintWinningMessage(this.letterHandler.WrongLettersCount);
+							this.renderer.PrintWordToDisplayMessage(this.WordToDisplay);
+
+							if (this.scoreManager.IsPlayerTop(this.letterHandler.WrongLettersCount))
+							{
+								this.renderer.PrintGetNameForScoreboard();
+								string playerName = Console.ReadLine();
+								int playerMistakes = this.letterHandler.WrongLettersCount;
+								Player player = new Player(playerName, playerMistakes);
+								this.scoreManager.AddPlayerToScoreBoard(player);
+							}
+
+							this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
+						}
+
+						this.RestartGame();
+					}
+					break;
+
+				case LetterStatus.Incorrect:
+					this.renderer.PrintIncorrectLetterMessage(guessedLetter);
+					break;
+
+				case LetterStatus.Repeating:
+					this.renderer.PrintRepeatingLetterMessage(guessedLetter);
+					break;
+				default:
 					break;
 			}
 		}
