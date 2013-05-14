@@ -6,6 +6,10 @@ namespace HangmanMain
     public class RandomWordGenerator
     {
         private string[] words;
+        public string[] Words
+        {
+            get { return words; }
+        }
 
         public RandomWordGenerator()
         {
