@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HangmanMain;
 
-namespace TestHangmanGame1
+namespace TestHangmanGame
 {
     [TestClass]
     public class TestCommandParser
