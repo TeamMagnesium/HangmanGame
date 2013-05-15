@@ -50,7 +50,7 @@ namespace TestHangmanGame
         public void LetterHandlerIsValid()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
-            LetterHandler letterHandlerSecond = new LetterHandler("computer");
+            LetterHandler letterHandlerSecond = new LetterHandler("software");
 
             Assert.AreNotSame(letterHandler, letterHandlerSecond);
         }
