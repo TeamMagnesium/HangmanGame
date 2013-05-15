@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace HangmanMain
 {
-	public class CommandParser
+	public class CommandParser : ICommandParser
 	{
 		private char guessedLetter;
 

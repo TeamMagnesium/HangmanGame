@@ -4,13 +4,14 @@ using System.Linq;
 
 namespace HangmanMain
 {
-    public class LetterHandler
-    {
+	public class LetterHandler : ILetterHandler
+	{
 		private readonly List<char> triedLetters = new List<char>();
 
-		private readonly string wordToGuess;
+		private string wordToGuess;
 
 		public int GuessedLettersCount { get; private set; }
+
 		public int WrongLettersCount { get; private set; }
 
 		public LetterHandler(string word)
@@ -18,8 +19,8 @@ namespace HangmanMain
 			this.wordToGuess = word;
 		}
 
-        public char GetRevealedLetter(string wordToDisplay)
-        {
+		public char GetRevealedLetter(string wordToDisplay)
+		{
 			char revealedLetter = char.MinValue;
 			for (int i = 0; i < wordToDisplay.Length; i++)
 			{
@@ -33,14 +34,14 @@ namespace HangmanMain
         }
 
 		public string RevealLetter(string wordToDisplay)
-        {
+		{
 			char revealedLetter = GetRevealedLetter(wordToDisplay);
 			wordToDisplay = FillLetter(revealedLetter, wordToDisplay);
 			return wordToDisplay;
         }
 
 		public string HandleLetterGuess(char guessedLetter, string wordToDisplay, out LetterStatus letterStatus)
-        {
+		{
 			if (triedLetters.Contains(guessedLetter))
 			{
 				letterStatus = LetterStatus.Repeating;
@@ -77,6 +78,5 @@ namespace HangmanMain
 			}
 			return String.Join("",wordAfterLetterFill);
         }
-
     }
 }

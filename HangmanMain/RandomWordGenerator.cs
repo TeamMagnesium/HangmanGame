@@ -3,13 +3,17 @@ using System.Linq;
 
 namespace HangmanMain
 {
-    public class RandomWordGenerator
-    {
-        private string[] words;
-        public string[] Words
-        {
-            get { return words; }
-        }
+	public class RandomWordGenerator : IRandomWordGenerator
+	{
+		private readonly string[] words;
+
+		public string[] Words
+		{
+			get
+			{
+				return words;
+			}
+		}
 
         public RandomWordGenerator()
         {
@@ -19,12 +23,17 @@ namespace HangmanMain
             };
         }
 
-        public string AssignRandomWord()
-        {
+		public string AssignRandomWord()
+		{
             Random randomizer = new Random();
             int wordIndex = randomizer.Next(0, this.words.Length);
 			string randomWord = words[wordIndex];
 			return randomWord;
         }
+
+		public ILetterHandler GenerateLetterHandler()
+		{
+			return new LetterHandler(AssignRandomWord());
+		}
     }
 }

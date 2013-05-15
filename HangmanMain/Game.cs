@@ -3,32 +3,32 @@ using System.Linq;
 
 namespace HangmanMain
 {
-	public class Game
+	public class Game : IGame
 	{
 		public string WordToGuess { get; private set; }
+
 		public string WordToDisplay { get; private set; }
+
 		public bool IsGameOver { get; private set; }
+
 		public bool UsedHelp { get; private set; }
 
-		private LetterHandler letterHandler;
-		private ScoreManager scoreManager;
-		private RandomWordGenerator generator;
-		private ConsoleRenderer renderer;
-		private CommandParser parser;
+		private ILetterHandler letterHandler;
+		private readonly ScoreManager scoreManager;
+		private readonly IRandomWordGenerator generator;
+		private readonly IConsoleRenderer renderer;
+
+		private readonly ICommandManager commandManager;
 
 		private void InitializeGameSettings()
 		{
 			this.IsGameOver = false;
 			this.UsedHelp = false;
 
-			this.generator = new RandomWordGenerator();
-            this.WordToGuess = generator.AssignRandomWord();
+			this.WordToGuess = generator.AssignRandomWord();
             this.WordToDisplay = GenerateBlankWord(WordToGuess.Length);
 
-            this.letterHandler = new LetterHandler(WordToGuess);
-            this.renderer = new ConsoleRenderer();
-            this.parser = new CommandParser();
-            this.scoreManager = ScoreManager.Instance;
+			this.letterHandler = this.generator.GenerateLetterHandler();
 		}
 
 		private string GenerateBlankWord(int length)
@@ -36,8 +36,17 @@ namespace HangmanMain
 			return new String('_', length);
 		}
 
-		public Game()
+		public Game() : this(new ConsoleRenderer(), new RandomWordGenerator(), new CommandManager())
 		{
+		}
+
+		public Game(IConsoleRenderer renderer, IRandomWordGenerator generator, ICommandManager commandManager)
+		{
+			this.renderer = renderer;
+			this.generator = generator;
+			this.commandManager = commandManager;
+			this.scoreManager = ScoreManager.Instance;
+
 			InitializeGameSettings();
 		}
 
@@ -51,9 +60,8 @@ namespace HangmanMain
 				try
 				{
                     this.renderer.PrintEnterGuessOrCommandMessage();
-					string userInput = Console.ReadLine();
-					string command = parser.ParseCommand(userInput);
-					ExecuteCommand(command);
+					string userInput = this.renderer.Read();
+					this.commandManager.ExecuteCommandFromUserInput(this, userInput);
 				}
 				catch (ArgumentException argumentException)
 				{
@@ -80,6 +88,23 @@ namespace HangmanMain
 			EndGame();
 		}
 
+		public void UseHelp()
+		{
+			this.UsedHelp = true;
+			char revealedLetter = this.letterHandler.GetRevealedLetter(this.WordToDisplay);
+			this.renderer.PrintRevealMessage(revealedLetter);
+			this.WordToDisplay = this.letterHandler.RevealLetter(this.WordToDisplay);
+			this.renderer.PrintWordToDisplayMessage(this.WordToDisplay);
+		}
+
+		public void GuessSingleLetter(char guessedLetter)
+		{
+			LetterStatus letterStatus;
+			this.WordToDisplay = this.letterHandler.HandleLetterGuess(guessedLetter, this.WordToDisplay, out letterStatus);
+			HandleLetterGuess(guessedLetter, letterStatus);
+			this.renderer.PrintWordToDisplayMessage(WordToDisplay);
+		}
+
 		private bool IsWordGuessed()
 		{
 			if (WordToDisplay == WordToGuess)
@@ -89,38 +114,8 @@ namespace HangmanMain
 			
 			return false;
 		}
-        
-		public void ExecuteCommand(string command)
-		{
-			switch (command.ToLower())
-			{
-				case "help":
-					this.UsedHelp = true;
-                    char revealedLetter = this.letterHandler.GetRevealedLetter(this.WordToDisplay);
-                    this.renderer.PrintRevealMessage(revealedLetter);
-					this.WordToDisplay = this.letterHandler.RevealLetter(this.WordToDisplay);
-                    this.renderer.PrintWordToDisplayMessage(this.WordToDisplay);
-					break;
-				case "top":
-                    this.renderer.PrintScoreboard(this.scoreManager.TopPlayers);
-					break;
-				case "restart":
-					RestartGame();
-					break;
-				case "exit":
-					ExitGame();
-					break;
-				default:
-					char guessedLetter = command[0];
-					LetterStatus letterStatus;
-					this.WordToDisplay = this.letterHandler.HandleLetterGuess(guessedLetter, this.WordToDisplay, out letterStatus);
-					HandleLetterGuessCommand(guessedLetter, letterStatus);
-                    this.renderer.PrintWordToDisplayMessage(WordToDisplay);
-					break;
-			}
-		}
 
-		private void HandleLetterGuessCommand(char guessedLetter, LetterStatus letterStatus)
+		private void HandleLetterGuess(char guessedLetter, LetterStatus letterStatus)
 		{
 			switch (letterStatus)
 			{

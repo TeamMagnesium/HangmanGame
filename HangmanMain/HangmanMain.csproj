@@ -41,10 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandManager.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="ConsoleRenderer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="HangmanMain.cs" />
+    <Compile Include="ICommandManager.cs" />
+    <Compile Include="ICommandParser.cs" />
+    <Compile Include="IConsoleRenderer.cs" />
+    <Compile Include="IGame.cs" />
+    <Compile Include="ILetterHandler.cs" />
+    <Compile Include="IRandomWordGenerator.cs" />
     <Compile Include="LetterStatus.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

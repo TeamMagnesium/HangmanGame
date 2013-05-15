@@ -1,6 +1,7 @@
 ﻿using System;
 using HangmanMain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Telerik.JustMock;
 
 namespace TestHangmanGame
 {
@@ -10,7 +11,7 @@ namespace TestHangmanGame
 		Game game;
 		[TestInitialize]
 
-		public void setup()
+		public void Setup()
 		{
 			game = new Game();
 		}
@@ -60,17 +61,21 @@ namespace TestHangmanGame
 		}
 
 		[TestMethod]
-		public void ExecuteCommand_Help()
+		public void StartGame_RendererPrints_WelcomeMessage()
 		{
-			game.ExecuteCommand("Help");
-			Assert.IsTrue(game.UsedHelp);
-		}
+			var rendererMock = Mock.Create<IConsoleRenderer>();
+			var generatorMock = Mock.Create<IRandomWordGenerator>();
+			var commandManagerMock = Mock.Create<ICommandManager>();
 
-		[TestMethod]
-		public void ExecuteCommand_Exit()
-		{
-			game.ExecuteCommand("Exit");
-			Assert.IsTrue(game.IsGameOver);
+			Mock.Arrange(() => rendererMock.PrintWelcomeMessage()).OccursOnce();
+			Mock.Arrange(() => generatorMock.AssignRandomWord()).Returns("word");
+			
+			var game = new Game(rendererMock, generatorMock, commandManagerMock);
+			Mock.Arrange(() => game.IsGameOver).Returns(true);
+
+			game.StartGame();
+
+			Mock.Assert(rendererMock);
 		}
 
 	}
