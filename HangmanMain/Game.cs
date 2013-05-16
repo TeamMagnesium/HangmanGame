@@ -60,7 +60,7 @@ namespace HangmanMain
 				try
 				{
                     this.renderer.PrintEnterGuessOrCommandMessage();
-					string userInput = this.renderer.Read();
+                    string userInput = Console.ReadLine();
 					this.commandManager.ExecuteCommandFromUserInput(this, userInput);
 				}
 				catch (ArgumentException argumentException)

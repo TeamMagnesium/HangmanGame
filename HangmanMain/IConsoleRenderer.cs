@@ -33,7 +33,5 @@ namespace HangmanMain
 		void PrintIncorrectInputMessage(string exceptionMessage);
 
 		void PrintExitMessage();
-
-		string Read();
 	}
 }

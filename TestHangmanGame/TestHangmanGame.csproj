@@ -52,8 +52,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="TestCommandManager.cs" />
+    <Compile Include="TestCommandParser.cs" />
     <Compile Include="TestConsoleRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestLetterHandler.cs" />
     <Compile Include="TestRandomWordGenerator.cs" />
     <Compile Include="TestScoreManager.cs" />
     <Compile Include="TestGame.cs" />

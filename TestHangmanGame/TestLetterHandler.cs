@@ -11,19 +11,19 @@ namespace TestHangmanGame
     public class TestLetterHandler
     {
         [TestMethod]
-        public void GuessedLettersCountIsValid()
+        public void TestGuessedLettersCount1()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";
             LetterStatus letterStatus;
 
-            letterHandler.HandleLetterGuess('c', wordToDisplay, out letterStatus);
+            letterHandler.HandleLetterGuess('o', wordToDisplay, out letterStatus);
 
             Assert.AreEqual(1, letterHandler.GuessedLettersCount);
         }
 
         [TestMethod]
-        public void GuessedLettersCount_BiggerThanOneIsValid()
+        public void TestGuessedLettersCount2()
         {
             LetterHandler letterHandler = new LetterHandler("debugger");
             string wordToDisplay = "________";
@@ -35,7 +35,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void WrongLettersCountIsValid()
+        public void TestWrongLettersCount1()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";
@@ -47,7 +47,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void LetterHandlerIsValid()
+        public void TestLetterHandlerConstructor()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             LetterHandler letterHandlerSecond = new LetterHandler("software");
@@ -56,18 +56,18 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void GetRevealedLetterIsValid()
+        public void TestGetRevealedLetter()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
-            string wordToDisplay = "________";
+            string wordToDisplay = "c_______";
 
             char revealedLetter = letterHandler.GetRevealedLetter(wordToDisplay);
 
-            Assert.AreEqual('c', revealedLetter);
+            Assert.AreEqual('o', revealedLetter);
         }
 
         [TestMethod]
-        public void RevealLetterIsValid()
+        public void TestRevealLetter()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";
@@ -78,7 +78,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void HandleLetterGuess_CorrectLetterStatusIsValid()
+        public void TestHandleLetterGuessCorrectLetterStatus()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";
@@ -91,7 +91,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void HandleLetterGuess_RepeatingLetterStatusIsValid()
+        public void TestHandleLetterGuessRepeatingLetterStatus()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";
@@ -105,7 +105,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void HandleLetterGuess_IncorrectLetterStatusIsValid()
+        public void TestHandleLetterGuessIncorrectLetterStatus()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";
@@ -118,7 +118,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void FillLetterIsValid()
+        public void TestFillLetter()
         {
             LetterHandler letterHandler = new LetterHandler("computer");
             string wordToDisplay = "________";

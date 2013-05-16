@@ -19,7 +19,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void CommandParser_CommandIsValid()
+        public void TestValidCommand()
         {
             string command = "top";
             string parsedCommand = parser.ParseCommand(command);
@@ -27,7 +27,7 @@ namespace TestHangmanGame
         }
 
         [TestMethod]
-        public void CommandParser_LetterIsValid()
+        public void TestLetterCommand()
         {
             string command = "a";
             string parsedCommand = parser.ParseCommand(command);
@@ -36,7 +36,7 @@ namespace TestHangmanGame
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void CommandParser_CommandIsNotValid()
+        public void TestInvalidCommand()
         {
             string command = "hello";
             string parsedCommand = parser.ParseCommand(command);

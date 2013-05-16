@@ -14,7 +14,7 @@
         private ConsoleRenderer renderer = new ConsoleRenderer();
         
         [TestMethod]
-        public void ValidateConsoleExitMessage()
+        public void TestConsoleExitMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -27,7 +27,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintEnterYourGuessOrCommand()
+        public void TestConsolePrintEnterYourGuessOrCommand()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -40,7 +40,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsoleWelcomeMessage()
+        public void TestConsoleWelcomeMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -57,7 +57,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintUserWordMessage()
+        public void TestConsolePrintUserWordMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -71,7 +71,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintCorrectLetterMessageOf1()
+        public void TestConsolePrintCorrectLetterMessageOf1()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -84,7 +84,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintCorrectLetterMessageOf5()
+        public void TestConsolePrintCorrectLetterMessageOf5()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -97,7 +97,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintRevealMessageForA()
+        public void TestConsolePrintRevealMessageForA()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -110,7 +110,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintIncorrectLetterMessageForA()
+        public void TestConsolePrintIncorrectLetterMessageForA()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -123,7 +123,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintWinningMessageFor1Mistake()
+        public void TestConsolePrintWinningMessageFor1Mistake()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -136,7 +136,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintWinningMessageFor2Mistakes()
+        public void TestConsolePrintWinningMessageFor2Mistakes()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -149,7 +149,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintCheatingMessageFor1Mistake()
+        public void TestConsolePrintCheatingMessageFor1Mistake()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -166,7 +166,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintCheatingMessageFor5Mistakes()
+        public void TestConsolePrintCheatingMessageFor5Mistakes()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -183,7 +183,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintGetNameForScoreboard()
+        public void TestConsolePrintGetNameForScoreboard()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -195,7 +195,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintIncorrectInputMessage()
+        public void TestConsolePrintIncorrectInputMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -208,7 +208,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintRepeatingLetterMessage()
+        public void TestConsolePrintRepeatingLetterMessage()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -221,7 +221,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintScoreboardOf5Players()
+        public void TestConsolePrintScoreboardOf5Players()
         {
             List<Player> scoreboard = new List<Player>();
 
@@ -245,7 +245,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintScoreboardOf0Players()
+        public void TestConsolePrintScoreboardOf0Players()
         {
             List<Player> scoreboard = new List<Player>();
 
@@ -258,7 +258,7 @@
             }
         }
 
-        public void ValidateConsolePrintScoreboardOf1Player()
+        public void TestConsolePrintScoreboardOf1Player()
         {
             List<Player> scoreboard = new List<Player>();
             scoreboard.Add(new Player("Ivan", 0));
@@ -273,7 +273,7 @@
         }
 
         [TestMethod]
-        public void ValidateConsolePrintNewLine()
+        public void TestConsolePrintNewLine()
         {
             using (StringWriter stringWriter = new StringWriter())
             {

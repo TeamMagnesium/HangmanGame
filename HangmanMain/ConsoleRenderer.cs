@@ -141,11 +141,6 @@
             Console.WriteLine(printMessage);
         }
 
-		public string Read()
-		{
-			return Console.ReadLine();
-		}
-
 		private string GetSpaceSeparatedWord(string word)
 		{
 			return String.Join(" ", word.ToCharArray());

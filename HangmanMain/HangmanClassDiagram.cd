@@ -31,7 +31,7 @@
   <Class Name="HangmanMain.Game">
     <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAABIAAEAAEABEAAAEAECgAAAAAAAQBAgAIAAQ4AA=</HashCode>
+      <HashCode>AIAAABIAAAAAEABAQAAQAAAgAAAEAAAAAAgAIACQ4AA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -40,6 +40,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAIAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HangmanMain.CommandParser">
+    <Position X="9.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>CommandParser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="HangmanMain.LetterStatus">
