@@ -1,7 +1,6 @@
 ﻿using System;
 using HangmanMain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Telerik.JustMock;
 
 namespace TestHangmanGame
 {
@@ -17,31 +16,31 @@ namespace TestHangmanGame
 		}
 
 		[TestMethod]
-		public void GameConstructor_IsGameOver()
+		public void TestGameConstructorIsGameOver()
 		{
 			Assert.IsFalse(game.IsGameOver);
 		}
 
 		[TestMethod]
-		public void GameConstructor_UsedHelp()
+		public void TestGameConstructorUsedHelp()
 		{
 			Assert.IsFalse(game.UsedHelp);
 		}
 
 		[TestMethod]
-		public void GameConstructor_WordToGuess()
+		public void TestGameConstructorWordToGuess()
 		{
 			Assert.IsFalse(string.IsNullOrEmpty(game.WordToGuess));
 		}
 
 		[TestMethod]
-		public void GameConstructor_WordToDisplayEmpty()
+		public void TestGameConstructorWordToDisplayEmpty()
 		{
 			Assert.IsFalse(string.IsNullOrEmpty(game.WordToDisplay));
 		}
 
 		[TestMethod]
-		public void GameConstructor_WordToDisplayNoLetters()
+		public void TestGameConstructorWordToDisplayNoLetters()
 		{
 			bool hasLetters = false;
 			for (int i = 0; i < game.WordToDisplay.Length; i++)
@@ -55,27 +54,23 @@ namespace TestHangmanGame
 		}
 
 		[TestMethod]
-		public void GameConstructor_WordToDisplayAndWordToGuess()
+		public void TestGameConstructorWordToDisplayAndWordToGuess()
 		{
 			Assert.IsTrue(game.WordToGuess.Length == game.WordToDisplay.Length);
 		}
 
 		[TestMethod]
-		public void StartGame_RendererPrints_WelcomeMessage()
+		public void TestEndGame()
 		{
-			var rendererMock = Mock.Create<IConsoleRenderer>();
-			var generatorMock = Mock.Create<IRandomWordGenerator>();
-			var commandManagerMock = Mock.Create<ICommandManager>();
+			game.EndGame();
+			Assert.IsTrue(game.IsGameOver);
+		}
 
-			Mock.Arrange(() => rendererMock.PrintWelcomeMessage()).OccursOnce();
-			Mock.Arrange(() => generatorMock.AssignRandomWord()).Returns("word");
-			
-			var game = new Game(rendererMock, generatorMock, commandManagerMock);
-			Mock.Arrange(() => game.IsGameOver).Returns(true);
-
-			game.StartGame();
-
-			Mock.Assert(rendererMock);
+		[TestMethod]
+		public void TestExitGame()
+		{
+			game.EndGame();
+			Assert.IsTrue(game.IsGameOver);
 		}
 
 	}
